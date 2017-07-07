@@ -1,0 +1,39 @@
+<ion-view title="添加货物">
+
+  <ion-content class="other-require bg-gray has-header" adjust-resize>
+    <div class="list">
+      <div class="item row">
+        <label class="col-25">货品:</label>
+        <input type="text" placeholder="请选择货品" ng-readonly="true" on-tap="openBrandModal()" ng-model="addGoodsData.brand"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">产地:</label>
+        <input type="text" placeholder="请选择产地" ng-readonly="true" on-tap="openPlaceSteelModal()" ng-model="addGoodsData.placesteel"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">材质:</label>
+        <input type="text" placeholder="请选择材质" ng-readonly="true" on-tap="openTextureModal()" ng-model="addGoodsData.texture"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">规格(mm):</label>
+        <input type="text" placeholder="直径" ng-model="addGoodsData.spec"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">重量(吨):</label>
+        <input type="text" placeholder="请输入货物重量" ng-model="addGoodsData.weight"/>
+      </div>
+      <div class="item row note">
+        <label class="col-25">定制要求:</label>
+        <textarea placeholder="选填(限100字以内)" ng-model="addGoodsData.customRequest"></textarea>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer">
+    <a class="btn-submit" on-tap="toOrderingStep1()">确定</a>
+  </ion-footer-bar>
+
+
+</ion-view>

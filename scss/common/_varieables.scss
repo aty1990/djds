@@ -1,0 +1,45 @@
+@import "../../www/lib/ionic/scss/variables";
+
+// colors
+$first-color: #333;
+$secondary-color: #666;
+$third-color: #999;
+
+$orange-color: #f19231;
+
+$orange-color2:#fe6915;
+
+$gray: #f0f0f2;
+$border-color: #efeff0;
+$border-color2: #dcdcdc;
+
+$font-black: #000;
+$font-gray: #898989 ;
+
+$font-blue:#2d9bf8;
+
+$font-gray2: #4d525d;
+$border-gray: #d7d7d7 ;
+
+
+$text-color-map: (
+  white: #fff,
+  orange: $orange-color,
+  first: $first-color,
+  secondary: $secondary-color,
+  third: $third-color
+);
+
+$bg-color-map: (
+  gray: $gray,
+  positive: $positive
+);
+
+$res-font-gray: #898989 !default;
+$res-border-color: #d7d7d7 !default;
+$res-energized: #ff5722 !default;
+$res-font-title: #4d525d !default;
+
+// dimensions
+
+

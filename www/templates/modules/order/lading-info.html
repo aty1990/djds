@@ -1,0 +1,46 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closeLadingInfoModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">提货信息</h1>
+  </ion-header-bar>
+
+  <ion-content class="lading-info bg-gray has-header">
+    <div class="list">
+      <div class="item title">
+        <label class="mgr-8">提货方式</label>
+
+        <select ng-model="ladingInfoData.deliveryType" >
+          <option  value="{{item.id}}" ng-repeat="item in deliveryTypeSelect">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="item title">
+        收货信息
+      </div>
+      <div class="item font-size-14 radio-box" ng-if="ladingInfoData.deliveryType==2">
+        <div ng-repeat="address in ladingInfoData.addressList" >
+          <ion-radio class="border-left-0 border-right-0" ng-change="addressChecked(address)"
+                     ng-model="ladingInfoData.dfAddressId" ng-value="address.addressId">
+            <div><span>{{address.addressShow}}{{address.addressInfo}}</span></div>
+            <div class="flex-display flex-justify-content-space-between"><span>{{address.takeDep}}</span><span>{{address.takePerson}}</span><span>{{address.takePhone}}</span></div>
+          </ion-radio>
+        </div>
+      </div>
+      <div class="item pdt-16 bg-gray" ng-if="ladingInfoData.deliveryType==2">
+        <a class="flex-display flex-justify-content-center" on-tap="openAddressModal()"><i class="icon ion-plus-circled pdr-8 font-size-20 text-orange2"></i>如无收货地址，<span class="text-orange2">点此新增</span></a>
+      </div>
+      <div class="item font-size-14  text-center flex-display flex-justify-content-center input-text" ng-if="ladingInfoData.deliveryType==1">
+        <label class="text-gray">提货车号</label><input type="text" ng-model="ladingInfoData.pickupCarNo" class=" mgl-8 text-gray">
+      </div>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer ">
+    <a class="btn-submit" on-tap="confirmLadingInfo()">确定</a>
+  </ion-footer-bar>
+
+
+</ion-modal-view>

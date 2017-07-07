@@ -1,0 +1,782 @@
+@charset "UTF-8";
+
+.text-blue {
+  color: $font-blue;
+}
+.font-size-13{
+  font-size: 13px;
+}
+.text-gray{
+  color: $font-gray;
+}
+
+.to-sport-order-footer {
+  display: flex;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  height: 58px;
+  line-height: 58px;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 -1px 10px $border-color;
+
+  .btn-submit {
+    background-color: $orange-color2;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: white;
+    padding: 0 8px;
+    width: 27%;
+    min-width: 110px;
+    text-align: center;
+    &.activated {
+      background-color: darken($orange-color2, 5%);
+    }
+  }
+}
+
+.to-spot-order {
+  &.has-footer {
+    bottom: 58px;
+  }
+  .list {
+    .item {
+      padding: 12px;
+      &.title {
+        border-left: none;
+        border-top: none;
+        border-right: none;
+        line-height: 30px;
+      }
+      .row {
+        padding: 0;
+        line-height: 26px;
+        font-size: 14px;
+        color: $font-gray;
+        .radio-box{
+          .item{
+            padding: 8px 0 0 0;
+          }
+          .item-radio {
+            height: 34px;
+            .radio-content {
+              height: 100%;
+            }
+            .radio-icon.ion-checkmark:before {
+              margin-top: -10px;
+            }
+
+
+          }
+        }
+        .photo-box {
+          position: relative;
+          display: block;
+          margin: 8px 0 8px 0;;
+          width: 96px;
+          height: 96px;
+          line-height: 96px;
+          text-align: center;
+          background-color: #eee;
+          .icon.ion-minus-circled {
+            color: $orange-color2;
+            position: absolute;
+            top: -49px;
+            font-size: 20px;
+            right: -6px;
+          }
+          img {
+            margin-top: 3px;
+            width: 90px;
+            height: 90px;
+          }
+        }
+      }
+      .content {
+        .line-feed{
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden
+        }
+        .date-input{
+          position: relative;
+          .date-time{
+            position: absolute;
+            left: 92px;
+            top: 6px;
+          }
+          .input-text{
+            border: 1px solid $border-color;
+            padding: 8px;
+            margin: 4px 0 0 0;
+            width: 120px;
+            height: 26px;
+            color: $font-gray2
+          }
+        }
+        .main {
+          display: flex;
+          justify-content: space-between;
+          .left {
+            font-size: 15px;
+            color: $font-gray2;
+          }
+          .right {
+            color: $font-gray;
+          }
+        }
+        .detail {
+          display: flex;
+          justify-content: space-between;
+          font-size: 13px;
+          color: $font-gray;
+          line-height: 28px;
+        }
+        .bg-style {
+          background-color: rgb(115, 143, 254);
+          border-radius: 4px;
+          color: white;
+          padding: 2px 4px 2px 4px;
+        }
+
+      }
+    }
+  }
+}
+
+.lading-info {
+  .list {
+    .item {
+      &.input-text{
+        input{
+          border: 1px solid $border-color;
+          padding: 0 8px;
+          width: 100px;
+          height: 30px;
+          color: $font-gray2
+        }
+        label{
+          line-height: 30px;
+        }
+
+      }
+      &.title {
+        font-size: 15px;
+        padding: 0 12px;
+        line-height: 55px;
+        height: 55px;
+        select {
+          vertical-align: middle;
+          color: $font-gray;
+          border: 1px solid $border-color;
+          border-radius: 4px;
+          height: 30px;
+          width: 150px;
+        }
+      }
+
+      &.radio-box {
+        padding: 0px 12px;
+        .item-radio {
+          border: none;
+          font-size: 14px;
+          height: 70px;
+          .radio-content {
+            height: 70px;
+            padding: 12px 0px;
+            color: $font-gray2;
+            border-bottom: 1px solid $border-color;
+            .item-content {
+              padding: 0px;
+              line-height: 23px;
+              height: 46px;
+              > span {
+                width: 100%;
+                display: inline-block;
+                font-size: 16px;
+              }
+            }
+          }
+
+          .radio-icon {
+            font-size: 22px;
+            top: 0px;
+            right: inherit;
+            visibility: visible;
+            padding: 0px;
+            &.ion-checkmark {
+              @extend .ion-ios-circle-outline;
+              color: #dcdcdc;
+              &:before {
+                display: block;
+                margin-top: 24px;
+              }
+            }
+          }
+          input:checked + .radio-content {
+            .item-content {
+              /* style the item content when its checked */
+              background: white;
+            }
+            .radio-icon {
+              &.ion-checkmark {
+                @extend .ion-ios-checkmark;
+                color: $orange-color2;
+                &:before {
+                  display: block;
+                  margin-top: 24px;
+                }
+              }
+            }
+          }
+        }
+
+        .item-content {
+          span {
+            padding-left: 24px;
+            font-size: 14px;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+
+.partner-info {
+  .list {
+    .item {
+      &.title {
+        font-size: 15px;
+        padding: 0 12px;
+        line-height: 55px;
+        height: 55px;
+        select {
+          vertical-align: middle;
+          color: $font-gray;
+          border: 1px solid $border-color;
+          border-radius: 4px;
+          height: 30px;
+          width: 150px;
+        }
+      }
+
+      &.radio-box {
+        padding: 0px 12px;
+        .item-radio {
+          border: none;
+          font-size: 14px;
+          height: 50px;
+          .radio-content {
+            height: 50px;
+            padding: 12px 0px;
+            color: $font-gray2;
+            border-bottom: 1px solid $border-color;
+            .item-content {
+              padding: 0px;
+              line-height: 23px;
+              height: 50px;
+              > span {
+                width: 100%;
+                display: inline-block;
+                font-size: 16px;
+              }
+            }
+          }
+
+          .radio-icon {
+            font-size: 22px;
+            top: 0px;
+            right: inherit;
+            visibility: visible;
+            padding: 0px;
+            &.ion-checkmark {
+              @extend .ion-ios-circle-outline;
+              color: #dcdcdc;
+              &:before {
+                display: block;
+                margin-top: 12px;
+              }
+            }
+          }
+          input:checked + .radio-content {
+            .item-content {
+              /* style the item content when its checked */
+              background: white;
+            }
+            .radio-icon {
+              &.ion-checkmark {
+                @extend .ion-ios-checkmark;
+                color: $orange-color2;
+                &:before {
+                  display: block;
+                  margin-top: 12px;
+                }
+              }
+            }
+          }
+        }
+
+        .item-content {
+          div {
+            padding-left: 34px;
+            font-size: 14px;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+.other-require {
+  bottom: 58px;
+  font-size: 15px;
+  .photo-box {
+    position: relative;
+    display: block;
+    margin: 8px 0 8px 0;;
+    width: 96px;
+    height: 96px;
+    line-height: 96px;
+    text-align: center;
+    background-color: #eee;
+    .icon.ion-minus-circled {
+      color: $orange-color2;
+      position: absolute;
+      top: -49px;
+      font-size: 20px;
+      right: -6px;
+    }
+    img {
+      margin-top: 3px;
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  .list {
+    .item {
+      height: 54px;
+      padding: 12px;
+      line-height: 28px;
+      a.photo-btn{
+        padding: 2px 12px;
+        border-radius: 18px;
+        border: 1px solid $orange-color2;
+        color: $orange-color2;
+        line-height: 22px;
+        &.active,
+        &.activated{
+          background-color: $orange-color2;
+          color: white;
+        }
+      }
+      .date{
+          height: 50px;
+          justify-content: space-between;
+          display: flex;
+          .dj-icon.date-time {
+            position: absolute;
+            right: 3px;
+            top: 3px;
+          }
+          > input {
+            border: 1px solid $border-color;
+            padding: 8px;
+            margin: 8px 0 8px 0;
+            width: 198px;
+            height: 35px;
+            color: $gray
+          }
+        .date-input{
+          position: relative;
+          width: 100%;
+        }
+      }
+      select {
+        color: $font-gray;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+      }
+      input{
+        color: $font-gray;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        height: 28px;
+        padding: 4px;
+        width: 100%;
+      }
+      &.note {
+        height: 160px;
+        textarea {
+          height: 100px;
+          padding: 4px;
+          width: 100%;
+          border: 1px solid $border-color;
+        }
+      }
+      &.radio-box {
+        .item-radio {
+          border: none;
+          font-size: 15px;
+          padding: 0px;
+          line-height: 28px;
+          height: 28px;
+          .radio-content {
+            height: 28px;
+            color: $font-gray2;
+            .item-content {
+              padding: 0px;
+              line-height: 28px;
+              height: 28px;
+              > span {
+                width: 100%;
+                display: inline-block;
+                font-size: 15px;
+              }
+            }
+          }
+
+          .radio-icon {
+            font-size: 22px;
+            top: 0px;
+            right: inherit;
+            visibility: visible;
+            padding: 0px;
+            &.ion-checkmark {
+              @extend .ion-ios-circle-outline;
+              color: #dcdcdc;
+              &:before {
+                display: block;
+                margin-top: 3px;
+              }
+            }
+          }
+          input:checked + .radio-content {
+            .item-content {
+              /* style the item content when its checked */
+              background: white;
+            }
+            .radio-icon {
+              &.ion-checkmark {
+                @extend .ion-ios-checkmark;
+                color: $orange-color2;
+                &:before {
+                  display: block;
+                  margin-top: 3px;
+                }
+              }
+            }
+          }
+        }
+
+        .item-content {
+          span {
+            padding-left: 24px;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-footer {
+
+  box-sizing: border-box;
+  height: 58px;
+  line-height: 58px;
+  padding: 0;
+  margin: 0;
+
+  .btn-submit {
+    background-color: $orange-color2;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: white;
+    padding: 0 8px;
+    width: 100%;
+    text-align: center;
+    &.activated {
+      background-color: darken($orange-color2, 5%);
+    }
+  }
+
+  &.btn-content {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 55px;
+    font-size: 18px;
+    .btn-item {
+      width: 50%;
+      text-align: center;
+      background-color: $res-font-gray;
+      color: white;
+      &.activated {
+        background-color: darken($res-font-gray, 5%);
+      }
+      &.btn-submit {
+        background-color: $res-energized;
+        &.activated {
+          background-color: darken($res-energized, 5%);
+        }
+      }
+    }
+  }
+}
+
+.my-order-container {
+  .switch-tabs {
+    position: relative;
+    top: 44px;
+  }
+  .has-tabs {
+    position: absolute;
+    top: 99px;
+    bottom: 0px;
+  }
+
+  .list {
+    .item {
+      padding: 0 12px;
+      border: none;
+      .head {
+        line-height: 55px;
+        padding: 0px;
+        border-bottom: 1px solid $border-color;
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+      }
+      .content {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-size: 13px;
+        display: block;
+        border-bottom: 1px solid $border-color;
+        .detail {
+          display: flex;
+          justify-content: space-between;
+          line-height: 24px;
+        }
+        .total {
+          display: flex;
+          justify-content: flex-end;
+          line-height: 30px;
+        }
+      }
+      .order-btn {
+        font-size: 14px;
+        height: 54px;
+        display: flex;
+        justify-content: flex-end;
+        .refuse-btn {
+          width: 70px;
+          padding: 4px 8px;
+          height: 30px;
+          margin: auto 0px;
+          text-align: center;
+          @include button-style(white, $border-color, $orange-color2, $orange-color2, $font-gray,white);
+        }
+        .confirm-btn {
+          width: 70px;
+          padding: 4px 8px;
+          height: 30px;
+          margin: auto 0px;
+          text-align: center;
+          @include button-style($orange-color2, $orange-color2, darken($orange-color2, 5%), darken($orange-color2, 5%), white,white);
+        }
+      }
+    }
+  }
+}
+
+.order-detail{
+  .list{
+    font-size: 14px;
+    .bg-white{
+      background-color: white;
+    }
+    .item{
+      padding: 8px 12px;
+      border: none;
+      &.total{
+        display: flex;
+        justify-content: flex-end;
+        line-height: 55px;
+        padding: 0 12px;
+      }
+      &.content{
+        line-height: 24px;
+        white-space: normal;
+        word-break: break-all;
+        padding:12px;
+        .main{
+          display: flex;
+          justify-content: space-between;
+        }
+        .detail{
+          color: $font-gray2;
+          font-size: 13px;
+          .bg-style {
+            background-color: rgb(115, 143, 254);
+            border-radius: 4px;
+            color: white;
+            padding: 2px 4px 2px 4px;
+          }
+        }
+        .log{
+          font-size: 13px;
+        }
+      }
+      &.title{
+        font-size: 16px;
+        line-height: 28px;
+        border-bottom: 1px solid $border-color;
+        span{
+          position: relative;
+          padding-left: 8px;
+          &:before{
+            content: '';
+            width: 4px;
+            height: 16px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background-color: $orange-color2;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.to-ordering-step1 {
+  &.has-footer{
+    bottom: 58px;
+  }
+  .list {
+    .item {
+      padding: 12px;
+      border: none;
+      &.title {
+        border-left: none;
+        border-top: none;
+        border-right: none;
+        line-height: 30px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+
+        a.add-btn{
+            border: 1px solid $orange-color2;
+            font-size: 13px;
+            border-radius: 16px;
+            padding: 6px 8px;
+            color: $orange-color2;
+            height: 30px;
+            line-height: 18px;
+            &.active,&.activated{
+              background-color: $orange-color2;
+              color: white;
+            }
+        }
+      }
+      &.content {
+        display: flex;
+        justify-content: space-between;
+        .note{
+          width: 100px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: center;
+          line-height: 19px;
+        }
+      }
+    }
+  }
+}
+
+
+.order-search{
+  bottom: 0;
+  top: inherit;
+  min-height: inherit;
+  height: 200px;
+  .row{
+    label{
+      line-height: 45px;
+    }
+    .input-text{
+      width: 96px;
+      border: 1px solid $border-color;
+      padding: 8px;
+      margin: 8px 0 0 0;
+      height: 26px;
+      color: $font-gray2;
+      height: 30px;
+    }
+
+  }
+  .filtrate-btn-box {
+    height: 45px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    a {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      color: white;
+      &.btn-clear {
+        background-color: #c1c1c1;
+        &.activated {
+          background-color: darken(#c1c1c1, 5%);
+        }
+      }
+      &.btn-submit {
+        background-color: $orange-color2;
+        &.activated {
+          background-color: darken($orange-color2, 5%);
+        }
+      }
+    }
+  }
+
+
+}
+
+
+.platform-ios {
+  .my-order-container,.my-message{
+    .switch-tabs{
+      top: 64px;
+    }
+    .has-tabs{
+      top:119px!important;
+    }
+  }
+
+  .my-contract-container{
+    .search-form{
+      top: 64px;
+    }
+    .has-tabs{
+      top:175px!important;
+    }
+  }
+
+}

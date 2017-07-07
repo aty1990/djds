@@ -1,0 +1,30 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closeBrandModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">订货</h1>
+  </ion-header-bar>
+
+
+  <ion-content class="choose-brand" scroll="false">
+
+    <ion-scroll class="c-left">
+      <a ng-class="{'cur':item.checked==true}" on-tap="clickVariety(item)" ng-repeat="item in varietyBrandList">
+        <!--<img ng-src="img/home/logo1.png" alt="">-->
+        <span>{{item.varietyName}}</span>
+      </a>
+
+    </ion-scroll>
+
+    <ion-scroll class="c-right">
+      <div class="list">
+        <a class="item" ng-repeat="item in brandList" on-tap="clickBrand(item)"><span>{{item.brandName}}</span></a>
+
+      </div>
+    </ion-scroll>
+
+  </ion-content>
+
+</ion-modal-view>

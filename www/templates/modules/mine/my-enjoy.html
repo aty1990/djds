@@ -1,0 +1,20 @@
+<ion-view title="我的尊享" class="bg-gray">
+  <ion-content class="enjoy">
+    <div ng-if="enjoy!=null">
+      <div class="enjoy-title">
+        <i class="ion-person"></i>
+        {{enjoy.cmpyName}}
+      </div>
+
+      <div class="enjoy-content">
+        {{enjoy.finalDiscountPolicy}}
+      </div>
+    </div>
+    <div ng-if="enjoy==null" class="no-record">
+      <span>暂无查询结果</span>
+    </div>
+  </ion-content>
+
+  <a class="enjoy-bottom-btn">申请优惠</a>
+
+</ion-view>

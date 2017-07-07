@@ -1,0 +1,163 @@
+<ion-view hide-nav-bar="true">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="home-title">
+      <form ng-submit="searchFn()">
+        <div class="pull-left left-text">
+          <span class="left-text">全国<i class="icon ion-ios-arrow-down"></i></span>
+        </div>
+        <div class="pull-left midden-box">
+               <span class="item-input-wrapper">
+                  <input type="search" placeholder="输入钢材名称" ng-model="searchKey"/>
+                  <i class="icon ion-close-circled placeholder-icon" on-tap="clearSearch()"
+                     ng-if="searchKey.length>0"></i>
+               </span>
+        </div>
+        <div class="pull-right">
+          <i class="icon ion-ios-search font-size-20" on-tap="searchFn()"></i>
+        </div>
+      </form>
+    </div>
+
+  </ion-header-bar>
+
+  <ion-content class="home has-bottom-tabs">
+
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <!--<ion-refresher
+        pulling-text="下拉刷新..."
+        on-refresh="initHomeData()">
+    </ion-refresher>-->
+
+    <!-- banner 轮播 -->
+    <ion-slide-box auto-play="true" does-continue="true" on-slide-changed="slideHasChanged($index)"
+                   delegate-handle="homeSlide">
+      <ion-slide ng-repeat="banner in bannerList">
+        <div class="box"><img style="height: 180px;" ng-src="{{banner.imgPathView}}"></div>
+      </ion-slide>
+    </ion-slide-box>
+
+    <!-- 通知公告 轮播 -->
+    <div class="notification">
+      <i class="ion-volume-high"></i>
+      <!--<ion-slide-box auto-play="true" does-continue="true" show-pager="false">
+        <ion-slide ng-repeat="item in specialRecommend">
+          <a class="box">{{item.content}}</a>
+        </ion-slide>
+      </ion-slide-box>-->
+
+      <marquee direction="left"><span ng-repeat="item in specialRecommend">{{item.content}}</span></marquee>
+    </div>
+
+    <!-- 四个按钮 + 三个写死的品类 -->
+    <div class="list">
+      <div class="item btn">
+        <a class="" native-ui-sref="res-list()">
+          <div class="bg-green"></div>
+          <span>求购</span>
+        </a>
+        <a class="" on-tap="addGoods()">
+          <div class="bg-blue"></div>
+          <span>订货</span>
+        </a>
+        <a class="" on-tap="toMyOrder()">
+          <div class="bg-dingdan"></div>
+          <span>订单</span>
+        </a>
+        <!--<a class="">-->
+        <!--<div class="bg-violet"><i class="ion-thumbsup"></i></div>-->
+        <!--<span>供应链服务</span>-->
+        <!--</a>-->
+        <a class="" on-tap="toMyEnjoy()">
+          <div class="bg-red"></div>
+          <span>我的尊享</span>
+        </a>
+
+        <a class="" on-tap="toCategory(1)">
+          <div class="bg-yuangang"></div>
+          <span>圆钢</span>
+        </a>
+
+        <a class="" on-tap="toCategory(2)">
+          <div class="bg-xiancai"></div>
+          <span>工业线材</span>
+        </a>
+
+        <a class="" on-tap="clickSurplus()">
+          <div class="bg-yucai"></div>
+          <span>余材</span>
+        </a>
+
+        <a class="" on-tap="clickInfo()">
+          <div class="bg-zhixun"></div>
+          <span>资讯</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- 优质资源 -->
+    <div class="second-title mgt-4">
+      <i class="dj-icon xesj mgr-4"></i>小二数据</label>
+    </div>
+    <div class="flex-display mgb-24 pd-all-12 mgt-4 xesj-cls pdt-16">
+        <span class="flex-items">
+            <p class="color-orange">{{yesterdaySpotWeight}}</p>
+            <p>昨日现货成交量(吨)</p>
+        </span>
+      <span class="flex-items has-left-border">
+            <p class="color-orange">{{todaySpotWeight}}</p>
+            <p>今日现货成交量(吨)</p>
+        </span>
+    </div>
+
+    <!-- 八个推荐品牌 -->
+    <div class="second-title">
+      <i class="dj-icon tjpp"></i>推荐品牌</label>
+      <a native-ui-sref="home-trademark({placesteelId:0})">更多</a>
+    </div>
+
+    <div class="trademark">
+      <a ng-repeat="item in factoryRecommend" ng-show="$index<8"
+         native-ui-sref="home-trademark({placesteelId:item.placesteelId})">
+        <img ng-src="{{item.logoUri}}" alt="">
+        <span>{{item.placesteelName}}</span>
+      </a>
+    </div>
+    <!-- 优质资源 -->
+    <div class="second-title resoure-cls">
+      <i class="dj-icon home-yzzy"></i>优质资源
+      <a native-ui-sref="res-list({query:{recommand:1}})">更多</a>
+    </div>
+    <div class="res-container">
+      <div class="list">
+        <a class="item pd-all-0">
+
+          <div class="body-item" ng-repeat="item in recList" on-tap="toResList(item)">
+            <div class="title">
+              <div class="title-span ">
+                {{item.brandName}}/{{item.placesteelName}}/{{item.textureName}}/{{item.specName}}<span
+                ng-show="item.surplusFlag==1">(余材)</span>
+              </div>
+              <span class="price-span ">¥{{item.listingPriceDesc}}</span>
+            </div>
+            <div class="content pdt-4">
+              <div class="row row-no-padding">
+                <div class="col col-75">
+                  <span>{{item.warehouseName}}</span>
+                  <span ng-if="item.cityName">（{{item.cityName}}）</span>
+                  <span class="bg-style"
+                        ng-show="item.deliveryDate&&item.deliveryDate!=0">{{item.deliveryDate}}天交货</span>
+                  <span class="bg-style" ng-show="item.liftingFlag==1">{{item.liftingFlagDesc}}</span>
+                  <span class="bg-style" ng-show="item.limitDistribution==1">{{item.limitDistributionDesc}}</span>
+                </div>
+                <div class="col col-25 weight-span">
+                  <span>{{item.listingWeight}}吨</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

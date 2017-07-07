@@ -1,0 +1,164 @@
+<ion-view title="填写现货订单">
+
+  <ion-content class="to-spot-order bg-gray has-footer has-header">
+    <div class="list mgb-20">
+      <div class="item title font-size-16 mgb-12">
+        {{spotOrder.mbrVO.mbrName}}
+      </div>
+      <a class="item title item-icon-right" on-tap="openParterInfoModal()">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title4 mgr-4"></i>专属客服</div>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <div class="item mgb-12">
+        <div class="content ">
+          <div class="row">
+            <div class="col-40">专属客服:</div>
+            <div class="col-60" ng-if="spotOrder.showList">
+              <div ng-if="spotOrder.personName!=null">{{spotOrder.personName}}<span ng-if="spotOrder.cellphone!=null">({{spotOrder.cellphone}})</span></div>
+              <div ng-if="spotOrder.personName==null">暂无，请维护</div>
+            </div>
+
+            <div class="col-60 line-feed" ng-if="!spotOrder.showList">暂无销售组织和专属客服信息，请联系运营方维护。联系电话：4001685888</span></div>
+
+          </div>
+        </div>
+      </div>
+      <a class="item title item-icon-right" on-tap="openLadingInfoModal()">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title1 mgr-4"></i>提货信息</div>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <div class="item mgb-12">
+        <div class="content">
+          <div class="row">
+            <div class="col-40">提货方式:</div>
+            <div class="col-60">
+              <span ng-if="spotOrder.deliveryType==2">配送</span>
+              <span ng-if="spotOrder.deliveryType==1">自提</span>
+            </div>
+          </div>
+          <div class="row" ng-if="spotOrder.deliveryType==2">
+            <div class="col-40">收货地址:</div>
+            <div class="col-60">{{spotOrder.dfaddress.addressShow}}{{spotOrder.dfaddress.addressInfo}}</div>
+          </div>
+          <div class="row" ng-if="spotOrder.deliveryType==2">
+            <div class="col-40">收货联系人:</div>
+            <div class="col-60">{{spotOrder.dfaddress.takePerson}} {{spotOrder.dfaddress.takePhone}}</div>
+          </div>
+          <div class="row" ng-if="spotOrder.deliveryType==1">
+            <div class="col-40">提货车号:</div>
+            <div class="col-60">{{spotOrder.pickupCarNo}}</div>
+          </div>
+          <div class="row" ng-if="spotOrder.freightPrice.hasResult">
+            <div class="col-40 pdt-4">运费报价:</div>
+            <div class="col-60 radio-box ">
+              <ion-radio  ng-value="1"  ng-if="spotOrder.freightPrice.pricePerTon!=null&&spotOrder.freightPrice.pricePerTon!='0.0'"
+                         ng-model="spotOrder.offerType" ng-change="changOfferType(1)">
+                <div class="font-size-14 pdl-24 text-gray">
+                  单吨价<span class="pdl-0">（<span class=" text-orange2 pdl-0">¥ <span class="font-bold pdl-0">{{spotOrder.freightPrice.pricePerTon}}</span> </span>/吨）</span>
+                </div>
+              </ion-radio>
+              <ion-radio   ng-value="2" ng-change="changOfferType(2)"             ng-if="spotOrder.freightPrice.pricePerVehicleTon!=null&&spotOrder.freightPrice.pricePerVehicleTon!='0.0'"
+
+                         ng-model="otherRequireData.myDiscount">
+                <div class="font-size-14 pdl-24 text-gray">包车价（<span class=" text-orange2 pdl-0">¥ <span class="font-bold pdl-0">{{spotOrder.freightPrice.pricePerVehicleTon}}</span> </span>/吨）</div>
+              </ion-radio>
+            </div>
+          </div>
+          <div class="row" ng-if="!spotOrder.freightPrice.hasResult && spotOrder.deliveryType==2">
+            <div class="col-40 mgt-4" style="line-height: 26px">期望运价:</div>
+            <div class="col-60 flex-display date-input">
+              <input type="number" class="input-text mgr-4" ng-model="spotOrder.expectFreight"/>
+              <span style="line-height: 26px" class="mgt-4">元/吨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="item title item-icon-right" on-tap="openOtherRequireModal()">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title2 mgr-4"></i>其他要求</div>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <div class="item mgb-12">
+        <div class="content ">
+          <div class="row">
+            <div class="col-40">上力费要求:</div>
+            <div class="col-60">
+              <span ng-if="spotOrder.warehouseFeeAgentFlag==0">否</span>
+              <span ng-if="spotOrder.warehouseFeeAgentFlag==1">代垫上力费</span>
+            </div>
+          </div>
+          <!--<div class="row">-->
+          <!--<div class="col-40">上力费单价:</div>-->
+          <!--<div class="col-60" ng-if="spotOrder.warehouseFeeAgentUintPrice"><span class=" text-orange2">¥ <span class="font-bold">{{spotOrder.warehouseFeeAgentUintPrice}}</span> </span>/吨</div>-->
+          <!--<div class="col-60" ng-if="!spotOrder.warehouseFeeAgentUintPrice">待计算</div>-->
+          <!--</div>-->
+          <div class="row">
+            <div class="col-40">一票制要求:</div>
+            <div class="col-60">
+              <span ng-if="spotOrder.settlementType==1">货运吊一票制</span>
+              <span ng-if="spotOrder.settlementType==2">货运吊三票制</span>
+              <span ng-if="spotOrder.settlementType==3">货运一票制</span>
+              <span ng-if="spotOrder.settlementType==4">货运二票制</span>
+              <span ng-if="spotOrder.settlementType==5">货物发票</span>
+              <span ng-if="spotOrder.settlementType==6">货吊一票制</span>
+              <span ng-if="spotOrder.settlementType==7">货吊二票制</span>
+            </div>
+          </div>
+          <!--<div class="row">-->
+          <!--<div class="col-40">一票制税费单价:</div>-->
+          <!--<div class="col-60" ng-if="spotOrder.warehouseFeeAgentUintPrice"><span class=" text-orange2">¥ <span class="font-bold">{{spotOrder.warehouseFeeAgentUintPrice}}</span> </span>/吨</div>-->
+          <!--<div class="col-60" ng-if="!spotOrder.warehouseFeeAgentUintPrice">待计算</div>-->
+          <!--</div>-->
+          <div class="row">
+            <div class="col-40">使用我的尊享:</div>
+            <div class="col-60" ng-if="spotOrder.myDiscount==1">是</div>
+            <div class="col-60" ng-if="spotOrder.myDiscount!=1">否</div>
+          </div>
+          <div class="row">
+            <div class="col-40">备注:</div>
+            <div class="col-60">{{spotOrder.orderInfo}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="item title">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title3 mgr-4"></i>货物信息</div>
+      </div>
+      <div class="item" ng-repeat="detail in spotOrder.cartList.shopCartPO2List">
+        <div class="content">
+          <div class="main">
+            <div class="left">{{detail.brandName}}/{{detail.textureName}}/{{detail.specName}}</div>
+            <div class="right"><span class=" text-orange2">¥ <span class="font-bold">{{detail.payablePriceYuan}}</span> </span>/吨
+            </div>
+          </div>
+          <div class="detail">
+            <span>上力费单价:<span class=" text-orange2">¥ <span class="font-bold">{{detail.warehouseFeeYuan}}</span> </span>/吨</span>
+            <span ng-if="detail.oneBillPrice!=null">一票制税费单价:<span class=" text-orange2" >¥ <span class="font-bold">{{detail.oneBillPrice}}</span> </span>/吨</span>
+            <span ng-if="detail.oneBillPrice==null">一票制税费单价:<span  class=" text-orange2" >待计算</span></span>
+          </div>
+          <div class="detail">
+            <div>
+              <span>{{detail.warehouseName}}</span>
+              <span ng-if="detail.warehouseCityName">（{{detail.warehouseCityName}}）</span>
+              <span class="bg-style"
+                    ng-show="detail.deliveryDate&&detail.deliveryDate!=0">{{detail.deliveryDate}}天交货</span>
+              <span class="bg-style" ng-show="detail.limitDistribution==1">限配送</span>
+              <span class="bg-style" ng-show="detail.limitDistribution!=1">不限配</span>
+              <span class="bg-style" ng-show="detail.liftingFlag==1">含吊</span>
+              <span class="bg-style" ng-show="detail.liftingFlag!=1">不含吊</span>
+            </div>
+            <div>{{detail.buyWeight}}吨</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="to-sport-order-footer " adjust-resize>
+    <div class="font-size-14 mgl-12">
+      共{{spotOrder.cartList.totalBuyWeight}}吨，合计:<span class="text-orange2"> ¥ <span class="font-bold">{{spotOrder.cartList.totalMoneyDesc}}</span></span>
+    </div>
+    <a class="btn-submit" on-tap="submitOrder()">提交订单</a>
+  </ion-footer-bar>
+
+</ion-view>

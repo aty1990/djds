@@ -1,0 +1,427 @@
+@import "varieables";
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+//.point-red-before {
+//  position: relative;
+//  &:before {
+//    content: ' ';
+//    display: inline-block;
+//    position: absolute;
+//    width: 4px;
+//    height: 4px;
+//    top: 50%;
+//    margin-top: -2px;
+//    margin-left: -8px;
+//    border-radius: 50%;
+//    background-color: $red-color;
+//  }
+//}
+
+.flex-display {
+    display: -webkit-flex; 
+    display: flex;
+    width: 100%;
+    align-items:center; 
+    justify-content:center;
+}
+.flex-items{
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    flex: 1;
+    padding:2px;
+    text-align: center;   
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-align-items-center {
+  align-items: center;
+}
+
+.flex-justify-content-space-between {
+  justify-content: space-between;
+}
+
+.flex-justify-content-center {
+  justify-content: center;
+}
+
+//.tabs-jw {
+//  position: static;
+//  justify-content: flex-start;
+//
+//  > .tab-item {
+//    max-width: 88px;
+//  }
+//}
+
+//.row-jw {
+//  width: auto;
+//  align-items: center;
+//
+//  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+//  input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+//  input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+//    display: inline-flex;
+//  }
+//}
+
+.text-nowrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+//.before-red-rect {
+//  position: relative;
+//
+//  &:before {
+//    content: ' ';
+//    display: inline-block;
+//    width: 4px;
+//    height: 14px;
+//    background-color: $hot-rolling-color;
+//    position: absolute;
+//    left: 0;
+//    top: 50%;
+//    margin-top: -7px;
+//  }
+//}
+
+.full-screen-tip {
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-top: 65%;
+}
+
+@each $key, $value in $text-color-map {
+  .text-#{$key} {
+    color: $value;
+  }
+}
+
+@each $key, $value in $bg-color-map {
+  .bg-#{$key} {
+    background-color: $value;
+  }
+}
+
+@each $i in 12, 14, 16, 18, 20, 24, 28, 32 {
+  $num: $i * 1px;
+  .font-size-#{$i} {
+    font-size: $num !important;
+  }
+}
+
+@each $i in 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96 {
+  $num: $i * 1px;
+  .mg-all-#{$i} {
+    margin: $num !important;
+  }
+  .mgt-#{$i} {
+    margin-top: $num !important;
+  }
+  .mgr-#{$i} {
+    margin-right: $num !important;
+  }
+  .mgb-#{$i} {
+    margin-bottom: $num !important;
+  }
+  .mgl-#{$i} {
+    margin-left: $num !important;
+  }
+  .pd-all-#{$i} {
+    padding: $num !important;
+  }
+  .pdt-#{$i} {
+    padding-top: $num !important;
+  }
+  .pdr-#{$i} {
+    padding-right: $num !important;
+  }
+  .pdb-#{$i} {
+    padding-bottom: $num !important;
+  }
+  .pdl-#{$i} {
+    padding-left: $num !important;
+  }
+  .radius-#{$i} {
+    border-radius: $num !important;
+  }
+  .radius-topleft-#{$i} {
+    @include border-top-left-radius($num);
+  }
+  .radius-topright-#{$i} {
+    @include border-top-right-radius($num);
+  }
+  .radius-bottomleft-#{$i} {
+    @include border-bottom-left-radius($num);
+  }
+  .radius-bottomright-#{$i} {
+    @include border-bottom-right-radius($num);
+  }
+}
+
+@each $value in 0 {
+  .border-top-#{$value} {
+    border-top: $value;
+  }
+  .border-right-#{$value} {
+    border-right: $value;
+  }
+  .border-bottom-#{$value} {
+    border-bottom: $value;
+  }
+  .border-left-#{$value} {
+    border-left: $value;
+  }
+}
+
+@each $value in 1 {
+  $num: $value * 1px;
+
+  .border-top-#{$value} {
+    border-top: $num solid $border-color;
+  }
+  .border-right-#{$value} {
+    border-right: $num solid $border-color;
+  }
+  .border-bottom-#{$value} {
+    border-bottom: $num solid $border-color;
+  }
+  .border-left-#{$value} {
+    border-left: $num solid $border-color;
+  }
+}
+
+
+// 浮动图片组
+.float-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right:0;
+  background-color:rgba(255,255,255,.6);
+  z-index: 9;
+
+  .float-inner {
+    position: absolute;
+    height: 300px;
+    left: 8px;
+    right: 8px;
+    top: 50%;
+    margin-top: -160px;
+  }
+
+  .float-image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// 自定义 radio
+.gx-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + .checkbox-content {
+      &:before {
+        @extend .ion-ios-checkmark;
+        color: $energized;
+      }
+    }
+  }
+
+  .checkbox-content {
+    padding-left: 1.8em;
+
+    &:before {
+      @extend .ion-ios-circle-outline;
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      font-size: 1.5em;
+    }
+  }
+}
+
+
+// 可切换tabs
+.switch-tabs {
+  $w-height: 54px;
+  z-index: 1;
+
+  display: flex;
+  background-color: white;
+  height: $w-height;
+
+  .switch-tab {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 36px;
+    line-height: $w-height;
+    border-bottom: 1px solid $border-color;
+    font-size: 16px;
+    color: $font-gray;
+    &.active {
+      color: $orange-color2;
+      span {
+        border-bottom: 4px solid $orange-color2
+      }
+    }
+    span {
+      height: $w-height;
+      display: block;
+      box-sizing: border-box;
+    }
+  }
+}
+
+@mixin button-style($bg-color, $border-color, $active-bg-color, $active-border-color, $color,$active-color) {
+  border: 1px solid $border-color;
+  background-color: $bg-color;
+  color: $color;
+  border-radius: 4px;
+
+  // Give desktop users something to play with
+  &:hover {
+    color: $active-color;
+    text-decoration: none;
+  }
+  &.active,
+  &.activated {
+    @if $active-border-color != ""{
+      border: 1px solid $active-border-color;
+    }
+    background-color: $active-bg-color;
+    color: $active-color;
+    //box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+  }
+}
+
+
+@mixin checkbox-style($top, $icon-width, $margin-top ,$line-height, $padding-left){
+  .item-checkbox .checkbox {
+    position: absolute;
+    top: $top;
+    right: 8px;
+    padding: 0px;
+    left: 0px;
+    z-index: 3;
+    margin-top: $margin-top;
+  }
+  .item.item-checkbox {
+    height: $line-height;
+    padding: 0 0 0 $padding-left;
+    border: none;
+    .checkbox-icon {
+      width: $icon-width;
+      height: $icon-width;
+      &:after{
+        top: 36%;
+        left: 25%;
+        width: 8px;
+        height: 4px;
+      }
+    }
+    .item-content{
+      line-height: $line-height;
+    }
+  }
+}
+
+.search-form {
+  height: 55px;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 13px;
+  div{
+    vertical-align: middle;
+    width: 100%;
+  }
+  input[type="text"] {
+    height: 32px;
+    border-radius: 4px;
+    width: 100%;
+    padding-left: 36px;
+    color: $font-gray2;
+  }
+  i.find {
+    left: 18px;
+    top: 18px;
+    position: absolute;
+  }
+}
+
+// 实现 ionicmodal 向左,向右的动画效果
+.slide-in-right {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(100%);
+}
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+.slide-in-left {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(100%);
+}
+.slide-in-left.ng-enter, .slide-in-left > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+.slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.slide-in-left.ng-leave, .slide-in-left > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms;
+}
+
+
+.popup-container{
+  .popup{
+    box-shadow: 0px 0px 2px 2px #ddd;
+  }
+}

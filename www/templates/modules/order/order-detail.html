@@ -1,0 +1,76 @@
+<ion-view title="订单详情">
+  <ion-content class="order-detail bg-gray">
+    <div class="list mgb-12">
+      <div class="item content pdt-12">
+        <div>订单号:{{order.orderNo}}</div>
+        <div>供方:{{order.seller}}</div>
+        <div>状态:<span class="text-blue">{{order.orderStatusDesc}}</span></div>
+      </div>
+      <div class="item title mgt-12">
+        <span>提货信息</span>
+      </div>
+      <div class="item content">
+        <div>提货方式:
+          <span ng-if="order.deliveryType == 1">自提</span>
+          <span ng-if="order.deliveryType == 2">配送</span>
+        </div>
+        <div ng-if="order.deliveryType==2">收货地址:<span>{{order.pcdDesc}}{{order.addressInfo}}</span>
+        </div>
+        <div ng-if="order.deliveryType==2"><span class="mgr-8">{{order.consigneeCmpy}}</span> <span class="mgr-8">{{order.pickupName}}</span> <span>{{order.pickupTel}}</span></div>
+      </div>
+      <div class="item title mgt-12">
+        <span>其他要求</span>
+      </div>
+      <div class="item content">
+        <div>上力费要求:<span ng-if="order.warehouseFeeAgentFlag==1">代垫上力费</span>
+          <span ng-if="order.warehouseFeeAgentFlag!=1">否</span></div>
+        <div>一票制要求:
+          <span ng-if="order.settlementType==1">货运吊一票制</span>
+          <span ng-if="order.settlementType==2">货运吊三票制</span>
+          <span ng-if="order.settlementType==3">货运一票制</span>
+          <span ng-if="order.settlementType==4">货运二票制</span>
+          <span ng-if="order.settlementType==5">货物发票</span>
+          <span ng-if="order.settlementType==6">货吊一票制</span>
+          <span ng-if="order.settlementType==7">货吊二票制</span>
+          <span ng-if="!order.settlementType">无</span>
+        </div>
+        <div>我的尊享:{{order.discountDesc?order.discountDesc:'无'}}</div>
+        <div>备注:{{order.orderInfo?order.orderInfo:'无'}}</div>
+      </div>
+      <div class="item title mgt-12">
+        <span>产品明细</span>
+      </div>
+      <div class="item content pd-all-0" ng-repeat="detail in order.detailList">
+        <div class="main bg-gray pdl-12 pdt-12 pdr-12 pdb-4">
+          <div>{{detail.brandName}}/{{detail.placesteelName}}/{{detail.textureName}}/{{detail.specName}}</div>
+          <div>{{detail.weightStr}}吨</div>
+          <div>{{detail.payablePriceYuan}}元/吨</div>
+        </div>
+        <div class="detail bg-gray pdl-12 pdt-0 pdr-12 pdb-12">
+          <span>{{detail.warehouseAbbr}}</span>
+          <!--<span>（{{detail.warehouseCityName}}）</span>-->
+          <span class="bg-style" ng-show="detail.deliveryDate&&detail.deliveryDate!=0">{{detail.deliveryDate}}天交货</span>
+          <span class="bg-style" ng-show="detail.limitDistribution==1">限配送</span>
+          <span class="bg-style" ng-show="detail.limitDistribution!=1">不限配</span>
+          <span class="bg-style" ng-show="detail.liftingFlag==1">含吊</span>
+          <span class="bg-style" ng-show="detail.liftingFlag!=1">不含吊</span>
+        </div>
+      </div>
+      <div class="item total pdr-12">
+        <div class="mgr-8">
+          总重量:<span class="text-orange2 font-bold">{{order.amountWeightStr}}</span>吨
+        </div>
+        <div>总金额:<span class="text-orange2">¥ <span class="font-bold">{{order.amountMoneyYuan}}</span></span>元</div>
+      </div>
+      <div class="item title mgt-12">
+        <span>操作日志</span>
+      </div>
+      <div class="item content "  ng-repeat="log in busiLog">
+        <div class="logger">
+          <span class="mgr-8">{{log.createTimeStr}}</span> <span>{{log.personName}}  {{log.cellphone}}  {{log.dataItem}}</span>
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

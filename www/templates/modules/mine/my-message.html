@@ -1,0 +1,77 @@
+<ion-view title="我的消息" class="my-message bg-gray">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-icon dj-icon recycle font-size-14" on-tap="delMsg()">清空</button>
+  </ion-nav-buttons>
+
+  <div class="switch-tabs">
+    <div class="switch-tab" ng-repeat="item in tabs" ng-class="{'active': curTab.tabIndex === item.tabIndex}" on-tap="switchTab(item)"><span>{{item.tabName}}</span></div>
+  </div>
+
+  <ion-content class="has-tabs">
+
+    <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
+
+    <ion-list>
+      <ion-item ng-repeat="item in msgList">
+        <div class="head">
+          <div class="detail">
+            <span class="font-size-16">{{item.linkName}}</span>
+            <span class="font-size-13 text-gray">{{item.sendTimeStr}}</span>
+          </div>
+          <div class="content">
+            <span>{{item.msgContent}}</span>
+          </div>
+        </div>
+        <ion-option-button class="btn-del" on-tap="markMsg(item, $index)" ng-if="curTab.tabIndex ==0">已读</ion-option-button>
+        <ion-option-button class="btn-del" on-tap="delMsg(item, $index)" ng-if="curTab.tabIndex ==1">删除</ion-option-button>
+      </ion-item>
+      <div ng-if="msgList.length==0" class="no-record" >
+        <span>暂无查询结果</span>
+      </div>
+
+    </ion-list>
+
+    <!--<ion-list ng-show="curTab.tabIndex === tabs[1].tabIndex">
+      <ion-item>
+        <div class="head">
+          <div class="detail">
+            <span class="font-size-16">修改邮箱成功</span>
+            <span class="font-size-13 text-gray">2016-12-12 08:30</span>
+          </div>
+          <div class="content">
+            <span>尊敬的钢信邹家辉,恭喜您已成功修改邮箱地址,如非本人操作,请及时联系运营商处理.</span>
+          </div>
+        </div>
+
+        <ion-option-button class="btn-del">删除</ion-option-button>
+      </ion-item>
+      <ion-item>
+        <div class="head">
+          <div class="detail">
+            <span class="font-size-16">修改邮箱成功</span>
+            <span class="font-size-13 text-gray">2016-12-12 08:30</span>
+          </div>
+          <div class="content">
+            <span>尊敬的钢信邹家辉,恭喜您已成功修改邮箱地址,如非本人操作,请及时联系运营商处理.</span>
+          </div>
+        </div>
+
+        <ion-option-button class="btn-del">删除</ion-option-button>
+      </ion-item>
+    </ion-list>-->
+
+    <ion-infinite-scroll distance="2%" on-infinite="doLoad()" ng-if="options.moreData"></ion-infinite-scroll>
+  </ion-content>
+
+  <!--<ion-footer-bar class="my-message-footer ">
+    <div class="select-all">
+      <ion-checkbox ng-model="selectAll" ng-checked="checked">
+        <span class="font-size-16">全选</span>
+      </ion-checkbox>
+    </div>
+    <div class="total">共5条消息</div>
+    <a class="btn-submit" on-tap="submit()">批量删除</a>
+  </ion-footer-bar>-->
+
+</ion-view>

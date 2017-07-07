@@ -1,0 +1,26 @@
+<ion-view title="修改手机号">
+  <ion-content class="pdt-24 pdl-24 pdr-24">
+    <div class="list">
+      <label class="item item-input border-left-0 border-right-0 border-top-0">
+        <span class="input-label">手机号</span>
+        <input type="text" placeholder="请输入新的手机号" ng-model="form.phoneNumber">
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">验证码</span>
+        <input type="text" placeholder="请输入验证码" ng-model="form.validateCode">
+      </label>
+
+      <div class="text-right mgt-20">
+        <button class="button button-positive button-clear font-size-14 pd-all-0" on-tap="getCode()"
+          ng-disabled="!isValidPhoneNumber() || waitSeconds > 0">
+          {{waitSeconds ? waitSeconds + ' 秒' : '获取验证码'}}
+        </button>
+      </div>
+    </div>
+
+    <button class="button button-energized button-block mgt-48" ng-disabled="!isValid()" on-tap="changePhoneNumber()">
+      提交
+    </button>
+  </ion-content>
+</ion-view>

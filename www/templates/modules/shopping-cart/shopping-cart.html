@@ -1,0 +1,86 @@
+<ion-view hide-nav-bar="true">
+  <ion-header-bar class="bar-positive shopping-cart-container">
+    <button class="button back-button buttons button-clear header-item" on-tap="goBack()"><i
+        class="icon ion-ios-arrow-left"></i></button>
+    <h1 class="title">购物车({{shopcartNum?shopcartNum:0}})</h1>
+    <a class="clear-btn" on-tap="cleanShopcart()"><i class="icon ion-ios-trash-outline font-size-20 mgr-4"></i>清空</a>
+  </ion-header-bar>
+  <ion-content class="shopping-cart-container has-footer has-header"  overflow-scroll="true" adjust-resize>
+    <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
+    <div class="list">
+      <div ng-repeat="shopcart in shopcartList">
+        <div class="head bg-white">
+          <ion-checkbox class="border-left-0 border-right-0" ng-model="shopcart.checked" ng-click="selectAll(shopcart)">
+            <span class="font-size-16">{{shopcart.mbrName}}</span>
+          </ion-checkbox>
+        </div>
+        <div ng-repeat="group in shopcart.shopCartGroupPOList">
+          <ion-list show-delete="shouldShowDelete"
+                    show-reorder="shouldShowReorder"
+                    can-swipe="true">
+            <ion-item ng-repeat="detail in group.shopCartPO2List"
+                      class="item-thumbnail-left mgb-12 border-top-0 border-bottom-0">
+              <div class="flex-display flex-justify-content-space-between">
+                <div class="bg-gray">
+                  <ion-checkbox ng-model="detail.checked" ng-click="selectSingle(shopcart,detail)">
+                  </ion-checkbox>
+                </div>
+                <div class="content pdt-12 pdr-12 pdb-12 pdl-4">
+                  <div class="content-top">
+                    <div class="left">
+                      <div class="title-span ">{{detail.brandName}}/{{detail.textureName}}/{{detail.specName}}</div>
+                    </div>
+                    <div class="right">
+                      <span class="price-span">¥<span class="font-bold">{{detail.listingPriceFormat}}</span></span>/吨
+                    </div>
+
+                  </div>
+                  <div class="content-bottom">
+                    <div class="left">
+                      <div>
+                        <span class="bg-style" ng-show="detail.deliveryDate&&detail.deliveryDate!=0">{{detail.deliveryDate}}天交货</span>
+                        <span class="bg-style" ng-show="detail.limitDistribution==1">限配送</span>
+                        <span class="bg-style" ng-show="detail.limitDistribution!=1">不限配</span>
+                        <span class="bg-style" ng-show="detail.liftingFlag==1">含吊</span>
+                        <span class="bg-style" ng-show="detail.liftingFlag!=1">不含吊</span>
+                      </div>
+                      <div>
+                        <span>{{detail.warehouseName}}</span>
+                        <span ng-if="detail.warehouseCityName">（{{detail.warehouseCityName}}）</span>
+                      </div>
+
+                    </div>
+                    <div class="right">
+                      <div class="weight-span">
+                        <input type="number" ng-model="detail.weight" class="mgr-4 text-center font-size-12"
+                               ng-change="caculateTotal(shopcart)" ng-blur="saveShopcart(shopcart,detail)">吨
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ion-option-button class="button-info del-button" ng-click="deleteShopcartById(shopcart,group.shopCartPO2List,detail,$index)">
+                删除
+              </ion-option-button>
+            </ion-item>
+          </ion-list>
+        </div>
+
+      </div>
+      <div ng-if="shopcartList.length==0" class="no-record" style="background-color: white">
+        <span>暂无查询结果，您可以尝试其他搜索条件</span>
+      </div>
+
+    </div>
+
+
+  </ion-content>
+
+  <ion-footer-bar class="shopping-cart-footer ">
+    <div class="total font-size-14 mgl-12">
+      <span>共{{totalWeight | number:3}}吨，合计:<span class="text-orange2"> ¥ <span class="font-bold">{{totalMoney | number:2}}</span></span></span>
+    </div>
+    <a class="btn-submit" on-tap="toSportOrder()">去下单</a>
+  </ion-footer-bar>
+
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closeParterInfoModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">专属客服</h1>
+  </ion-header-bar>
+
+  <ion-content class="partner-info bg-gray has-header">
+    <div class="list">
+      <div class="item font-size-14 radio-box" ng-if="partnerInfoData.showList">
+        <div ng-repeat="partner in partnerInfoData.partnerList" >
+          <ion-radio class="border-left-0 border-right-0" ng-change="partnerChecked(partner)"
+                     ng-model="partnerInfoData.personName" ng-value="partner.personName">
+            <div>{{partner.personName}}<span ng-if="partner.cellphone!=null" class="pdl-0">({{partner.cellphone}})</span></div>
+          </ion-radio>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer ">
+    <a class="btn-submit" on-tap="confirmPartnerInfo()">确定</a>
+  </ion-footer-bar>
+
+
+</ion-modal-view>

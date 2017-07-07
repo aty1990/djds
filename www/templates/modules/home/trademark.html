@@ -1,0 +1,31 @@
+<ion-view view-title="推荐品牌">
+
+
+
+  <ion-content class="trademark-content">
+    <div class="list">
+
+      <div class="item" ng-repeat="item in dataList"
+           ng-show="param_placesteelId==0 || param_placesteelId == item.placeSteelId"
+           ng-init="item.shrink = (item.brandList.length > 6)">
+
+        <div class="t-title">
+          <img ng-src="{{item.logoUri}}" alt="">
+          <span>{{item.placeSteelName}}</span>
+        </div>
+
+        <div class="t-content" ng-class="{'shrink':item.shrink}">
+          <a class="b-item" ng-repeat="brand in item.brandList" on-tap="clickBrand({{brand}})">{{brand.brandName}}</a>
+          <span class="no-data" ng-if="item.brandList.length<=0">暂没有挂牌资源</span>
+        </div>
+
+        <a ng-show="item.brandList.length > 6" on-tap="item.shrink = !item.shrink">
+          <i class="ion-arrow-down-b" ng-class="{'ion-arrow-down-b':item.shrink,'ion-arrow-up-b':!item.shrink}"></i>
+        </a>
+
+      </div>
+
+    </div>
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,52 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closeOtherRequireModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">其他要求</h1>
+  </ion-header-bar>
+
+  <ion-content class="other-require bg-gray has-header" adjust-resize>
+    <div class="list">
+      <div class="item row">
+        <label class="col-33">上力费要求:</label>
+        <select ng-model="otherRequireData.warehouseFeeAgent" class="col-67" ng-change="changeWarehouseFeeAgentSelect()">
+          <option value="{{item.id}}" ng-repeat="item in warehouseFeeAgentSelect">{{item.name}}
+          </option>
+        </select>
+      </div>
+      <div class="item row">
+        <label class="col-33">一票制要求:</label>
+        <select ng-model="otherRequireData.settlementType" class="col-67">
+          <option value="{{item.id}}" ng-repeat="item in settlementTypeSelect">{{item.name}}
+          </option>
+        </select>
+      </div>
+      <div class="item row radio-box">
+        <label class="col-33">使用我的尊享:</label>
+
+        <ion-radio class="mgr-16" name="myDiscountSelect" ng-value="1"
+                   ng-model="otherRequireData.myDiscount">
+          是
+        </ion-radio>
+        <ion-radio name="myDiscountSelect" ng-value="0"
+                   ng-model="otherRequireData.myDiscount">
+          否
+        </ion-radio>
+      </div>
+      <div class="item row note">
+        <label class="col-33">备注:</label>
+        <textarea ng-model="otherRequireData.orderInfo"></textarea>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer ">
+    <a class="btn-submit" on-tap="confirmOtherRequire()">确定</a>
+  </ion-footer-bar>
+
+
+</ion-modal-view>

@@ -1,0 +1,97 @@
+<ion-view title="申请认证">
+  <ion-content>
+
+    <div class="list form-certify">
+      <div class="item">
+        <label class="label">企业全称:</label>
+        <input type="text" class="input" placeholder="请输入企业全称" ng-model="form.cmpyName">
+      </div>
+
+      <div class="item">
+        <label class="label">所在地区:</label>
+        <select class="select" ng-model="form.province"><option ng-repeat="item in provinceList" value="{{item.provinceCode}}">{{item.provinceName}}</option></select>
+        <select class="select" ng-model="form.city"><option ng-repeat="item in cityList" value="{{item.cityCode}}">{{item.cityName}}</option></select>
+        <select class="select" ng-model="form.district"><option ng-repeat="item in districtList" value="{{item.districtCode}}">{{item.districtName}}</option></select>
+      </div>
+
+      <div class="item">
+        <label>企业信用代码:</label>
+        <input type="text" class="input" placeholder="请输入企业信用代码" ng-model="form.socialCreditCode">
+      </div>
+
+      <div class="item">
+        <label class="label">税号:</label>
+        <input type="text" class="input" placeholder="请输入税号" ng-model="form.cmpyTariff">
+      </div>
+
+      <div class="item">
+        <label class="label">企业证件:</label>
+        <select class="select" ng-model="form.credentialType">
+          <option value="1">普通营业执照</option>
+          <option value="2">企业三证合一</option>
+        </select>
+      </div>
+
+      <div class="item">
+        <label class="label"></label>
+        <div class="upload-row">
+          <label class="label">营业执照</label>
+          <a class="btn-upload" ng-show="!form.busiLicence" on-tap="selectHeadImage(1)">拍照上传</a>
+          <div class="photo-box" ng-show="form.busiLicence">
+            <i class="icon ion-minus-circled"  on-tap="deleteImage(1)"></i>
+            <img src="{{form.busiLicence}}" alt="" >
+          </div>
+        </div>
+      </div>
+      <div class="item" ng-show="form.credentialType==1">
+        <label class="label"></label>
+        <div class="upload-row">
+          <label class="label">组织机构代码证</label>
+          <a class="btn-upload" ng-show="!form.org" on-tap="selectHeadImage(2)">拍照上传</a>
+          <div class="photo-box" ng-show="form.org">
+            <i class="icon ion-minus-circled"  on-tap="deleteImage(2)"></i>
+            <img src="{{form.org}}" alt="" >
+          </div>
+        </div>
+      </div>
+      <div class="item" ng-show="form.credentialType==1">
+        <label class="label"></label>
+        <div class="upload-row">
+          <label class="label">税务登记证</label>
+          <a class="btn-upload" ng-show="!form.taxReg" on-tap="selectHeadImage(3)">拍照上传</a>
+          <div class="photo-box" ng-show="form.taxReg">
+            <i class="icon ion-minus-circled"  on-tap="deleteImage(3)"></i>
+            <img src="{{form.taxReg}}" alt="" >
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <label class="label"></label>
+        <div class="upload-row">
+          <label class="label">开户许可证</label>
+          <a class="btn-upload" ng-show="!form.permission" on-tap="selectHeadImage(4)">拍照上传</a>
+          <div class="photo-box" ng-show="form.permission">
+            <i class="icon ion-minus-circled"  on-tap="deleteImage(4)"></i>
+            <img src="{{form.permission}}" alt="" >
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <label class="label"></label>
+        <div class="upload-row">
+          <label class="label">企业认证制授权书</label>
+          <a class="btn-upload" ng-show="!form.proxy" on-tap="selectHeadImage(5)">拍照上传</a>
+          <div class="photo-box" ng-show="form.proxy">
+            <i class="icon ion-minus-circled"  on-tap="deleteImage(5)"></i>
+            <img src="{{form.proxy}}" alt="" >
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+  <ion-footer-bar class="pd-all-0">
+    <a class="btn-submit-form-certify" on-tap="submitCertify()">提交</a>
+  </ion-footer-bar>
+</ion-view>

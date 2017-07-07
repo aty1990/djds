@@ -1,0 +1,28 @@
+<ion-view title="修改邮箱">
+  <ion-content class="pdt-24 pdl-24 pdr-24">
+
+    <div class="list">
+      <label class="item item-input border-left-0 border-right-0 border-top-0">
+        <span class="input-label">邮箱</span>
+        <input type="text" placeholder="请输入新的邮箱地址" ng-model="form.email">
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">验证码</span>
+        <input type="text" placeholder="请输入验证码" ng-model="form.validateCode">
+      </label>
+
+      <div class="text-right mgt-20">
+        <button class="button button-positive button-clear font-size-14 pd-all-0" on-tap="getCode()"
+                ng-disabled="!isValidEmail() || waitSeconds > 0">
+          {{waitSeconds ? waitSeconds + ' 秒' : '发送验证码到邮箱'}}
+        </button>
+      </div>
+    </div>
+
+    <button class="button button-energized button-block mgt-48" ng-disabled="!isValid()" on-tap="changeEmail()">
+      提交
+    </button>
+
+  </ion-content>
+</ion-view>

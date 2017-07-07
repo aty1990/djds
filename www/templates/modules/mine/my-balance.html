@@ -1,0 +1,36 @@
+<ion-view title="我的余额" class="bg-gray">
+  <ion-content>
+      <div class="list list-balance">
+        <div class="item text-center border-bottom-0">
+            <div class="font-size-16 font-bold">
+              <i class="icon ion-person positive mgr-8"></i>
+              {{balanceData.mbrName}}
+            </div>
+        </div>
+
+        <div class="item item-balance mgt-12">
+          <label class="font-size-14">业务余额</label>
+          <div class="energized font-size-16">
+            <span class="font-bold">{{balanceData.balance.bizBalance}}</span>
+            <span class="font-size-14">元</span>
+          </div>
+        </div>
+
+        <div class="item item-balance">
+          <label class="font-size-14">财务余额</label>
+          <div class="energized font-size-16">
+            <span class="font-bold">{{balanceData.balance.financeBalance}}</span>
+            <span class="font-size-14">元</span>
+          </div>
+        </div>
+
+        <div class="item item-balance">
+          <label class="font-size-14">授信余额</label>
+          <div class="energized font-size-16">
+            <span class="font-bold">{{balanceData.balance.creditBalance}}</span>
+            <span class="font-size-14">元</span>
+          </div>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

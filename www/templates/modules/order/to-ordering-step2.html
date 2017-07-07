@@ -1,0 +1,124 @@
+<ion-view title="填写订货订单">
+
+  <ion-content class="to-spot-order bg-gray has-footer has-header" adjust-resize>
+    <div class="list">
+      <div class="item title font-size-16 mgb-12">
+        {{orderingOrder.mbr.mbrName}}
+      </div>
+      <a class="item title item-icon-right" on-tap="openParterInfoModal()">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title4 mgr-4"></i>专属客服</div>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <div class="item mgb-12">
+        <div class="content ">
+          <div class="row">
+            <div class="col-40">专属客服:</div>
+            <div class="col-60" ng-if="orderingOrder.showList">
+              <div ng-if="orderingOrder.personName!=null">{{orderingOrder.personName}}<span ng-if="orderingOrder.cellphone!=null">({{orderingOrder.cellphone}})</span></div>
+              <div ng-if="orderingOrder.personName==null">暂无，请维护</div>
+            </div>
+
+            <div class="col-60 line-feed" ng-if="!orderingOrder.showList">暂无销售组织和专属客服信息，请联系运营方维护。联系电话：4001685888</span></div>
+
+          </div>
+        </div>
+      </div>
+      <a class="item title item-icon-right" on-tap="openLadingInfoModal()">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title1 mgr-4"></i>提货信息</div>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <div class="item mgb-12">
+        <div class="content">
+          <div class="row">
+            <div class="col-40">提货方式:</div>
+            <div class="col-60">
+              <span ng-if="orderingOrder.deliveryType==2">配送</span>
+              <span ng-if="orderingOrder.deliveryType==1">自提</span>
+            </div>
+          </div>
+          <div class="row" ng-if="orderingOrder.deliveryType==2">
+            <div class="col-40">收货地址:</div>
+            <div class="col-60">{{orderingOrder.dfaddress.addressShow}}{{orderingOrder.dfaddress.addressInfo}}</div>
+          </div>
+          <div class="row" ng-if="orderingOrder.deliveryType==2">
+            <div class="col-40">收货联系人:</div>
+            <div class="col-60">{{orderingOrder.dfaddress.takePerson}} {{orderingOrder.dfaddress.takePhone}}</div>
+          </div>
+          <div class="row" ng-if="orderingOrder.deliveryType==1">
+            <div class="col-40">提货车号:</div>
+            <div class="col-60">{{orderingOrder.pickupCarNo}}</div>
+          </div>
+        </div>
+      </div>
+      <a class="item title item-icon-right" on-tap="openOtherRequireModal()">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title2 mgr-4"></i>其他要求</div>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <div class="item mgb-12">
+        <div class="content ">
+          <div class="row">
+            <div class="col-40">上力费要求:</div>
+            <div class="col-60">
+              <span ng-if="orderingOrder.warehouseFeeAgentFlag==null">无</span>
+              <span ng-if="orderingOrder.warehouseFeeAgentFlag==0">否</span>
+              <span ng-if="orderingOrder.warehouseFeeAgentFlag==1">代垫上力费</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-40">一票制要求:</div>
+            <div class="col-60">
+              <span ng-if="orderingOrder.settlementType==null">无</span>
+              <span ng-if="orderingOrder.settlementType==1">货运吊一票制</span>
+              <span ng-if="orderingOrder.settlementType==2">货运吊三票制</span>
+              <span ng-if="orderingOrder.settlementType==3">货运一票制</span>
+              <span ng-if="orderingOrder.settlementType==4">货运二票制</span>
+              <span ng-if="orderingOrder.settlementType==5">货物发票</span>
+              <span ng-if="orderingOrder.settlementType==6">货吊一票制</span>
+              <span ng-if="orderingOrder.settlementType==7">货吊二票制</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-40">交货期:</div>
+            <div class="col-60" >{{orderingOrder.futureDeliveryDate?orderingOrder.futureDeliveryDate:'无'}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-40">技术标准:</div>
+            <div class="col-60">
+              <div ng-if="orderingOrder.uploadImg==null">无</div>
+              <div class="photo-box" ng-if="orderingOrder.uploadImg!=null&&orderingOrder.uploadImg!=''">
+                <img src="{{orderingOrder.uploadImg}}" alt="" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-40">备注:</div>
+            <div class="col-60">{{orderingOrder.orderInfo?orderingOrder.orderInfo:'无'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="item title">
+        <div class="font-size-16 flex-display"><i class="dj-icon spot-order-title3 mgr-4"></i>货物信息</div>
+      </div>
+      <div class="item mgb-20">
+        <div class="content">
+          <div class="main" ng-repeat="detail in orderingOrder.detailList">
+            <div>{{detail.brandName}}/{{detail.placesteelName}}/{{detail.textureName}}/{{detail.specName}}</div>
+            <div>{{detail.requirementInfo}}</div>
+            <div><span class=" text-orange2 font-bold">{{detail.weight}}</span>吨</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="to-sport-order-footer ">
+    <div class="font-size-14 mgl-12">
+      合计:<span class="text-orange2 font-bold">{{orderingOrder.weight | number:3}}</span>吨
+    </div>
+    <a class="btn-submit" on-tap="submitOrder()">提交订单</a>
+  </ion-footer-bar>
+
+</ion-view>

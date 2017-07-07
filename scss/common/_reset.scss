@@ -1,0 +1,125 @@
+@import "varieables";
+
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Heiti SC", "Microsoft YaHei", SimSun, "WenQuanYi Micro Hei", sans-serif;
+  color: $secondary-color;
+  * {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+select {
+  vertical-align: super;
+}
+
+/*.button {
+  height: 45px;
+  min-height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+}*/
+
+.list {
+  .item {
+    font-size: 14px;
+    border-color: #efeff0;
+
+    &.activated {
+      background-color: #efeff0;
+    }
+
+    .ion-ios-arrow-right {
+      color: #bbb;
+      font-size: 20px;
+      right: 8px;
+    }
+  }
+}
+
+.item.row {
+  width: auto;
+}
+
+.item-icon-left .icon,
+.item-icon-right .icon {
+  font-size: 24px;
+}
+
+.item-input {
+  padding: 12px 0 8px 16px;
+}
+.input-label {
+  width: 25%;
+  text-align: right;
+  padding-right: 12px;
+}
+
+
+// 去掉header下的渐变线
+.bar {
+  background-image: none !important;
+  border-bottom: none !important;
+
+  .title {
+    font-size: 18px;
+  }
+}
+
+.modal-backdrop{
+  z-index: 12;
+}
+
+.sprity-tabs .icon {
+  display: flex;
+}
+
+
+//.right-buttons {
+//  .button-clear {
+//    font-size: 14px !important;
+//  }
+//}*/
+//
+//// For ios
+///*.platform-ios {
+//  .has-ios-statusbar-without-header {
+//    top: $ios-statusbar-height;
+//  }
+//}
+//
+//// Reset styles of slides
+//.slides-container {
+//  height: 180px;
+//
+//  .swiper-pagination {
+//    bottom: 4px;
+//  }
+//
+//  .swiper-pagination-bullet {
+//    background-color: #fff;
+//  }
+//}
+//
+//.button-origin {
+//  background-color: #fff;
+//  padding: 0;
+//  min-width: initial;
+//  min-height: initial;
+//  border-radius: 0;
+//  font-size: inherit;
+//  line-height: normal;
+//  border: none;
+//  color: inherit;
+//
+//  &.activated {
+//    border-color: $border-color;
+//    background-color: transparent;
+//  }
+//}*/
+

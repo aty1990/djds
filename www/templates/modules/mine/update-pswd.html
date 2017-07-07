@@ -1,0 +1,23 @@
+<ion-view title="修改密码">
+  <ion-content class="pdt-24 pdl-24 pdr-24">
+    <div class="list">
+      <label class="item item-input border-left-0 border-right-0 border-top-0">
+        <span class="input-label">原密码</span>
+        <input type="password" placeholder="请输入原密码" ng-model="form.oldPswd">
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">新密码</span>
+        <input type="password" placeholder="6-20位数字、大小写字母" ng-model="form.newPswd">
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">确认密码</span>
+        <input type="password" placeholder="请再次确认密码" ng-model="form.confirmPswd">
+      </label>
+    </div>
+
+    <button class="button button-energized button-block mgt-64" ng-disabled="!isValid()"
+            on-tap="changePassword()">提交</button>
+  </ion-content>
+</ion-view>

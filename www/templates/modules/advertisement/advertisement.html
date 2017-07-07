@@ -1,0 +1,23 @@
+<ion-view hide-nav-bar="true">
+
+  <ion-content scroll="false">
+
+    <a native-ui-sref="tab.home()" class="go-home" style="color: #fff;">进入首页</a>
+
+    <ion-slide-box class="slider-ads" slide-interval="1500" auto-play="true" show-pager="false"
+                   on-slide-changed="slideHasChanged($index)">
+      <ion-slide>
+        <img src="img/boot/ad-1.png" width="100%" height="100%">
+      </ion-slide>
+      <ion-slide>
+        <img src="img/boot/ad-2.png" width="100%" height="100%">
+      </ion-slide>
+      <ion-slide>
+        <img src="img/boot/ad-3.png" width="100%" height="100%">
+      </ion-slide>
+    </ion-slide-box>
+
+  </ion-content>
+
+
+</ion-view>

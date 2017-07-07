@@ -1,0 +1,76 @@
+<ion-view title="合同详情">
+  <ion-content class="order-detail bg-gray">
+    <div class="list mgb-12">
+      <div class="item content pdt-12">
+        <div>合同号:{{contractInfo.contract.contractNo}}</div>
+        <div>供方:{{contractInfo.contract.partyAName}}</div>
+        <div>需方:{{contractInfo.contract.partyBName}}</div>
+        <div>签订日期:{{contractInfo.contract.signDate}}</div>
+      </div>
+      <div class="item title mgt-12">
+        <span>产品明细</span>
+      </div>
+      <div class="bg-white">
+        <div class="item content pd-all-0 " ng-repeat="detail in contractInfo.contractResDetailPOList">
+          <div class="main bg-gray pdl-12 pdt-12 pdr-12 pdb-12">
+            <div>{{detail.brandName}}/{{detail.placesteelName}}/{{detail.textureName}}/{{detail.specDesc}}</div>
+            <div>{{detail.weight}}吨</div>
+            <div>{{detail.pricePay/100}}元/吨</div>
+          </div>
+        </div>
+      </div>
+      <div class="item total pdr-12">
+        <div class="mgr-8">
+          总重量:<span class="text-orange2 font-bold">{{contractInfo.orderVO.amountWeight | number:3}}</span>吨
+        </div>
+        <div>总金额:<span class="text-orange2">¥ <span class="font-bold">{{contractInfo.orderVO.amountMoneyYuan | number:2}}</span></span>元
+        </div>
+      </div>
+      <div class="item title mgt-12">
+        <span>服务条款</span>
+      </div>
+      <div class="item content">
+        <div>物流服务:1.运输(需方负责卸货)&nbsp;&nbsp;
+          <span ng-if="contractInfo.orderVO.orderType==2&&contractInfo.orderVO.deliveryType == 2">送达时间({{contractInfo.orderVO.futureDeliveryDate}}),送货地址({{contractInfo.orderVO.pcdDesc+contractInfo.orderVO.addressInfo}})</span>
+          <span ng-if="contractInfo.orderVO.orderType==1&&contractInfo.orderVO.deliveryType == 2">送货地址({{contractInfo.orderVO.pcdDesc+contractInfo.orderVO.addressInfo}})</span>
+          2.仓库、装卸&nbsp;&nbsp;
+          <span ng-if="contractInfo.orderVO.warehouseFeeAgentFlag!=1">(无);</span>
+          <span ng-if="contractInfo.orderVO.warehouseFeeAgentFlag==1">费用由供方代垫(装卸过程中发生的翻堆费、加班费等按实际发生额另行结算);</span>
+          3.自提&nbsp;&nbsp;<span ng-if="contractInfo.orderVO.pickupAddrInfo!=null&&contractInfo.orderVO.pickupAddrInfo!=''">提货地址({{contractInfo.orderVO.pickupAddrInfo}})</span><span ng-if="contractInfo.orderVO.deliveryType == 1">,提货车号:{{contractInfo.orderVO.pickupCarNo}}</span>
+          <span ng-if="contractInfo.orderVO.deliveryType == 2">需方委托江苏华溢物流有限公司代送货,运费由需方与江苏华溢物流有限公司结算。</span>
+          资金服务:
+          1.承兑汇票加价(按钢小二承兑加价标准);
+          <span ng-if="contractInfo.orderVO.orderType == 2">
+            2.支付要求&nbsp;&nbsp;
+            <span>{{contractInfo.orderVO.payDateBefore}}前支付{{contractInfo.orderVO.depositRatio}}%(金额{{((contractInfo.orderVOamountMoney/100)*(contractInfo.orderVO.depositRatio/100)).toFixed(2)}}元),余款{{contractInfo.orderVO.payRestTypeDesc}};</span>
+            3.欠款服务&nbsp;&nbsp;
+            <span ng-if="contractInfo.orderVO.payRestType == 2">{{contractInfo.orderVO.payRestFinishTime}}前结清贷款,欠款服务必须签订(服务合同),
+            合同生效后自{{contractInfo.orderVO.payRestAddTime}}起(实际可按货到之日起)每吨加价{{(contractInfo.orderVO.debtAdjustPriceOne/100).toFixed(2)}}元/天(含税),第11天起每吨加价,{{(contractInfo.orderVO.debtAdjustPriceTwo/100).toFixed(2)}}元/天((含税),第31天起每吨加价,
+              {{(contractInfo.orderVO.debtAdjustPriceThree/100).toFixed(2)}}元/天(含税)。
+            </span>
+          </span>
+          <span ng-if="contractInfo.orderVO.orderType == 1">
+            2.欠款服务&nbsp;&nbsp;{{contractInfo.orderVO.repaymentDate}}前结清贷款,欠款服务必须签订(服务合同),合同生效后自{{contractInfo.orderVO.billDate}}起(实际可按货到之日起)每吨加价{{(contractInfo.orderVO.debtAdjustPriceOne/100).toFixed(2)}}元/天(含税),第11天起每吨加价,{{(contractInfo.orderVO.debtAdjustPriceTwo/100).toFixed(2)}}元/天((含税),第31天起每吨加价,
+              {{(contractInfo.orderVO.debtAdjustPriceThree/100).toFixed(2)}}元/天(含税)。
+          </span>
+          其他服务：1.一票制(税金加收)。
+        </div>
+      </div>
+
+      <div class="item title mgt-12" ng-if="contractInfo.orderVO.orderType == 2">
+        <span>定制要求</span>
+      </div>
+      <div class="item content" ng-repeat="item in contractInfo.contractResDetailPOList" ng-if="contractInfo.orderVO.orderType == 2">
+        <span ng-if="item.requirementInfo!=null&&item.requirementInfo!=''">{{item.goodsDesc}}&nbsp;&nbsp;{{item.requirementInfo}}</span>
+      </div>
+
+      <div class="item title mgt-12">
+        <span>其他条款</span>
+      </div>
+      <div class="item content" ng-repeat="item in contractInfo.contractItemsDetailPOList">
+        <span>{{item.itemsContent}}</span>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

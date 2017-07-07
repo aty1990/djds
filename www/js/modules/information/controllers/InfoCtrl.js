@@ -1,0 +1,3 @@
+djEShopControllers.controller('InfoCtrl', function () {
+    
+});

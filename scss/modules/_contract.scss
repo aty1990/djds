@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+
+.my-contract-container {
+
+  @extend  .my-order-container;
+
+  .search-form{
+    position: relative;
+    top: 44px;
+  }
+  .switch-tabs {
+    position: relative;
+    top: 44px;
+  }
+  .has-tabs {
+    position: absolute;
+    top: 153px;
+    bottom: 0px;
+  }
+}
+
+

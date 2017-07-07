@@ -1,0 +1,35 @@
+<ion-view hide-nav-bar="true">
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">订货下单</h1>
+  </ion-header-bar>
+
+  <ion-content class="to-ordering-step1 bg-gray has-footer has-header">
+    <div class="list">
+      <!--<div class="item title mgb-12">-->
+        <!--江苏钢小二电子商务有限公司-->
+      <!--</div>-->
+      <div class="item title">
+        <div class="flex-display"><i class="dj-icon spot-order-title3 mgr-4"></i><div>货物信息</div></div>
+        <a class="add-btn" native-ui-sref="add-goods()"><span class="font-size-16">+</span><span>添加货物</span></a>
+      </div>
+      <div class="item content bg-gray" ng-repeat="item in orderingStep1Data">
+        <div>{{item.brand}}/{{item.placesteel}}/{{item.texture}}/{{item.spec}}</div>
+        <div class="note">{{item.customRequest}}</div>
+        <div>{{item.weight}}吨</div>
+      </div>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="to-sport-order-footer " adjust-resize>
+    <div class="font-size-14 mgl-12">
+      合计:<span class="text-orange2 font-bold">{{weightTotal | number:3}}</span>吨
+    </div>
+    <a class="btn-submit" on-tap="submit()">去下单</a>
+  </ion-footer-bar>
+
+</ion-view>

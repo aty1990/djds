@@ -1,0 +1,38 @@
+<ion-modal-view class="choose-steelplace bg-gray">
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closePlaceSteelMoreModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">选择产地</h1>
+  </ion-header-bar>
+  <div class="search-form">
+    <div class="mgr-12  pdt-12 pdb-12 pdl-0 pdr-0">
+      <i class="dj-icon find"></i>
+      <input type="text" placeholder="请输入产地名称关键字" ng-model="psOptions.placesteelName">
+    </div>
+    <i class="dj-icon search" on-tap="doRefreshPlaceSteel()"></i>
+  </div>
+
+  <ion-content class="has-header2 has-footer">
+    <ion-refresher pulling-text="" on-refresh="doRefreshPlaceSteel()"></ion-refresher>
+
+    <div class="list">
+      <div class="item pd-all-0" ng-repeat="item in steelPlaceList">
+        <ion-radio name="driverRadio" ng-value="item.placesteelId" on-tap="checkedPlaceSteel(item)"
+                   ng-model="steelPlaceChecked">
+          {{item.placesteelName}}
+        </ion-radio>
+      </div>
+    </div>
+    <ion-infinite-scroll distance="2%" on-infinite="doLoadPlaceSteel()" ng-if="psOptions.moreData"></ion-infinite-scroll>
+
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer" adjust-resize>
+    <a class="btn-submit" on-tap="confirmPlaceSteel(true)">确定</a>
+  </ion-footer-bar>
+
+
+</ion-modal-view>

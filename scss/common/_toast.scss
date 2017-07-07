@@ -1,0 +1,18 @@
+.toast-container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+
+  > .toast-content {
+    display: inline-block;
+    position: relative;
+    top: 100px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    max-width: 300px;
+    background-color: rgba(0,0,0,.8);
+    z-index: 1000;
+  }
+}

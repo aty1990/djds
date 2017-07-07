@@ -1,0 +1,56 @@
+<ion-view title="系统设置" class="bg-gray">
+  <ion-content>
+    <div class="list mgb-8">
+      <a class="item item-icon-right" native-ui-sref="setting-accustom()">偏好设置<i class="icon ion-ios-arrow-right"></i></a>
+      <a class="item item-icon-right" on-tap="openSettingMessageModal()">消息设置<i class="icon ion-ios-arrow-right"></i></a>
+    </div>
+    <div class="list">
+      <a class="item item-icon-right" ng-if="!isIOS" on-tap="checkVersion()">
+        检查更新
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-right" on-tap="openAboutUsModal()">
+        关于我们
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>
+  </ion-content>
+
+  <!-- 关于我们 -->
+  <script id="about-us.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar-positive">
+        <button class="button back-button buttons button-clear header-item" on-tap="closeAboutUsModal()">
+          <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">关于我们</h1>
+      </ion-header-bar>
+      <ion-content class="text-center" scroll="false">
+        <div style="margin-top: 150px;">
+          <img src="img/mine/qr-code.png" width="200" height="200">
+        </div>
+        <div class="mgt-4">扫描关注小二云商公众号</div>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+
+  <!-- 消息设置 -->
+  <script id="setting-message.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar-positive">
+        <button class="button back-button buttons button-clear header-item" on-tap="closeSettingMessageModal()">
+          <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">消息设置</h1>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list">
+          <ion-toggle ng-model="message.checked" ng-checked="message.checked" ng-change="messageCheckedChange()">接受消息通知</ion-toggle>
+        </div>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+
+</ion-view>
+
+

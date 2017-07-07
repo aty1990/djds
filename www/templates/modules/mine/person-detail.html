@@ -1,0 +1,54 @@
+<ion-view title="账户信息" class="bg-gray">
+
+  <ion-content style="bottom: 44px;">
+
+    <div class="list">
+      <div class="item item-divider  ">用户信息</div>
+      <div class="item item-icon-right">
+        <span class="">登录账号</span>
+        <span class="pull-right person-item-info positive">{{personInfo.name}}</span>
+      </div>
+      <a class="item item-icon-right" on-tap="selectImage()">
+        <span class="">修改头像</span>
+        <!--<img class="pull-right head-img" ng-show="e" ng-src="">-->
+        <i class="icon ion-ios-personadd" style="right: 46px;" ng-show="!headImage"></i>
+        <img style="position: absolute; top: 50%; margin-top: -20px; width: 40px; height: 40px; right: 56px;"
+             ng-src="{{headImage}}" ng-show="headImage">
+        <i class="icon ion-ios-arrow-right arrow-color"></i>
+      </a>
+      <a class="item item-icon-right" on-tap="goToChangePasswordPage()">
+        <span class="">修改密码</span>
+        <i class="icon ion-ios-arrow-right arrow-color"></i>
+      </a>
+      <div class="item item-icon-right">
+        <span class="">姓名</span>
+        <span class="pull-right person-item-info positive">{{personInfo.personName}}</span>
+      </div>
+      <a class="item item-icon-right" on-tap="goToChangePhoneNumberPage()">
+        <span class="">手机号</span>
+        <span class="pull-right person-item-info positive">{{personInfo.cellphone}}</span>
+        <i class="icon ion-ios-arrow-right arrow-color"></i>
+      </a>
+      <a class="item item-icon-right" on-tap="goToChangeEmailPage()">
+        <span class="">邮箱</span>
+        <span class="pull-right person-item-info positive">{{personInfo.email}}</span>
+        <i class="icon ion-ios-arrow-right arrow-color"></i>
+      </a>
+
+      <div class="item item-certify ">认证企业
+        <a class="btn-certify" native-ui-sref="company-certify()">申请认证</a>
+      </div>
+      <a ng-repeat="mbr in mbrList" class="item item-icon-right" native-ui-sref="companyDetail({cmpyId:mbr.cmpyId,mbrId:mbr.mbrId})">
+        <span class="">{{mbr.mbrName}}</span>
+        <span class="pull-right person-item-info positive" ng-if="mbr.deMbr === 2">{{"默认"}}</span>
+        <i class="icon ion-ios-arrow-right arrow-color"></i>
+      </a>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="bg-gray pd-all-0">
+    <button class="button button-energized button-full mg-all-0" on-tap="logout()">退出登录</button>
+  </ion-footer-bar>
+
+</ion-view>

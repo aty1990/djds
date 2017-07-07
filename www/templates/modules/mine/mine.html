@@ -1,0 +1,79 @@
+<ion-view title="我的" class="bg-gray">
+
+  <ion-content class="has-tabs" style="margin-top: -2px;">
+
+    <div class="list">
+      <div class="item mine-header bg-positive text-white">
+        <div class="mine-header-img ion-person" ng-show="!headImage"></div>
+        <div class="mine-header-img" ng-show="headImage">
+          <img ng-src="{{headImage}}" style=" width: 60px; height: 60px;">
+        </div>
+
+        <a class="mine-header-info" ng-if="isLogin" native-ui-sref="personDetail()">
+          <div> {{personInfo.personName}}（{{personInfo.cellphone}}）</div>
+          <div class="font-size-12">{{defaultMbr.mbrName || '尚未设置默认企业'}}</div>
+        </a>
+        <a class="mine-header-info" ng-if="!isLogin" native-ui-sref="login()">
+          <div>立即登录</div>
+          <div class="font-size-12">登录后可享受更多权限</div>
+        </a>
+        <i class="mine-header-arrow ion-ios-arrow-right" style="color: white;"></i>
+      </div>
+
+      <div class="item row text-center pd-all-0 border-bottom-0">
+        <div class="col col-50 pdt-8 pdb-8 border-right-1" native-ui-sref="my-order()">
+          <div class="font-size-24 pdb-4 energized font-bold">{{orderNum}}</div>
+          <div class="font-size-12">处理中订单</div>
+        </div>
+        <div class="col pdt-8 pdb-8" native-ui-sref="my-message()">
+          <div class="font-size-24 pdb-4 energized font-bold">{{msgNum}}</div>
+          <div class="font-size-12">未读消息</div>
+        </div>
+      </div>
+
+      <a class="item item-icon-left item-icon-right mgt-12 border-top-0" native-ui-sref="myBalance()">
+        <i class="icon ion-social-yen assertive"></i>
+        我的余额
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" on-tap="toMyEnjoy()">
+        <i class="icon ion-ios-box royal"></i>
+        我的尊享
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" on-tap="toMyOrder()">
+        <i class="icon ion-ios-list positive"></i>
+        我的订单
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right border-bottom-0" native-ui-sref="my-contract()">
+        <i class="icon ion-ios-paper-outline assertive"></i>
+        我的合同
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <!--<a class="item item-icon-left item-icon-right border-bottom-0" native-ui-sref="my-message()">
+        <i class="dj-icon message"></i>
+        我的消息
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>-->
+
+      <a class="item item-icon-left item-icon-right mgt-12 border-top-0">
+        <i class="icon ion-ios-compose-outline energized"></i>
+        意见反馈
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" href="tel:4001685888">
+        <i class="icon ion-ios-telephone royal"></i>
+        联系客服
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right border-bottom-0" native-ui-sref="setting()">
+        <i class="icon ion-ios-gear balanced"></i>
+        系统设置
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>
+
+  </ion-content>
+
+</ion-view>

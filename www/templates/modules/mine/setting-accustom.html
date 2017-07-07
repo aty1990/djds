@@ -1,0 +1,143 @@
+<ion-view title="偏好设置" class="bg-gray">
+  <ion-content>
+    <div class="accustom-setting-box">
+      <a class="accustom-btn-row" on-tap="openCityModal()">资源所在地(不超过3项)<i class="icon ion-ios-arrow-right"></i></a>
+      <div class="list ">
+        <div class="item item-icon-right" ng-repeat="item in curCityList">{{item.name}}</div>
+      </div>
+    </div>
+    <div class="accustom-setting-box">
+      <a class="accustom-btn-row" on-tap="openPlaceSteelModal()">品牌(不超过3项)<i class="icon ion-ios-arrow-right"></i></a>
+      <div class="list ">
+        <div class="item item-icon-right" ng-repeat="item in curPlacesteelList">{{item.name}}</div>
+      </div>
+    </div>
+    <div class="accustom-setting-box">
+      <a class="accustom-btn-row" on-tap="openBrandModal()">品名(不超过3项)<i class="icon ion-ios-arrow-right"></i></a>
+      <div class="list ">
+        <div class="item item-icon-right" ng-repeat="item in curBrandList">{{item.name}}</div>
+      </div>
+    </div>
+  </ion-content>
+
+  <!-- 资源地弹窗 -->
+  <script id="city-modal.html" type="text/ng-template">
+    <ion-modal-view class="accustom-setting-modal">
+      <div class="bar bar-title">
+        <span class="title">资源所在地</span>
+      </div>
+      <div class="setting-content">
+        <ion-scroll direction="y" class="setting-scroll res-checkbox">
+          <ion-checkbox class="border-left-0 border-right-0" ng-repeat="city in cityList" ng-model="city.checked">
+            {{city.cityName}}
+          </ion-checkbox>
+        </ion-scroll>
+      </div>
+      <div class="btn-content">
+        <a class="btn-item" on-tap="unChecked(1)">清空</a>
+        <a class="btn-item btn-submit" on-tap="savePref(1)">确定</a>
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!-- 品牌弹窗  废 -->
+  <script id="placeSteel-modal.html" type="text/ng-template">
+    <ion-modal-view class="accustom-setting-modal">
+      <div class="bar bar-title">
+        <span class="title">品牌</span>
+      </div>
+      <div class="setting-content">
+        <ion-scroll direction="y" class="setting-scroll res-checkbox">
+          <ion-refresher pulling-text="" on-refresh="doRefreshPlaceSteel()"></ion-refresher>
+          <ion-checkbox class="border-left-0 border-right-0" ng-repeat="placeSteel in placeSteelList"
+                        ng-model="placeSteel.checked">
+            {{placeSteel.placesteelName}}
+          </ion-checkbox>
+          <ion-infinite-scroll distance="2%" on-infinite="doLoadPlaceSteel()"
+                               ng-if="psOptions.moreData && psOptions.show"></ion-infinite-scroll>
+        </ion-scroll>
+      </div>
+      <div class="btn-content">
+        <a class="btn-item" on-tap="unChecked(2)">清空</a>
+        <a class="btn-item btn-submit" on-tap="savePref(2)">确定</a>
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!-- 品类品名 弹窗 -->
+  <script id="brand-modal.html" type="text/ng-template">
+    <ion-modal-view class="accustom-setting-modal ">
+      <div class="bar bar-title">
+        <h1 class="title">品名</h1>
+      </div>
+      <div class="setting-content">
+        <div class="setting-content-item">
+          <ion-scroll class=" setting-scroll">
+            <ul class="ul-left">
+              <li ng-repeat="variety in varietyBrandList" ng-click="changeBrandList(variety)"
+                  ng-class="{'checked':varietySelected.varietyId==variety.varietyId, 'hasChecked':hasChecked(variety)}">{{variety.varietyName}}
+              </li>
+            </ul>
+          </ion-scroll>
+        </div>
+        <div class="setting-content-item">
+          <ion-scroll direction="y" class="  setting-scroll res-checkbox" delegate-handle="brand-modal-scroll-handle">
+            <div ng-repeat="variety in varietyBrandList" ng-show="varietySelected.varietyId==variety.varietyId">
+              <ion-checkbox ng-repeat="brand in variety.brandList" ng-model="brand.checked">
+                {{brand.brandName}}
+              </ion-checkbox>
+            </div>
+
+          </ion-scroll>
+        </div>
+
+      </div>
+      <div class="btn-content">
+        <a class="btn-item" on-tap="unChecked(3)">清空</a>
+        <a class="btn-item btn-submit" on-tap="savePref(3)">确定</a>
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!-- 品牌 弹窗 废 -->
+  <!--<script id="placeSteel-modal-ff.html" type="text/ng-template">
+    <ion-modal-view class="choose-steelplace bg-gray">
+
+      <ion-header-bar class="bar-positive">
+        <button class="button back-button buttons button-clear header-item" on-tap="closePlaceSteelModal()">
+          <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">品牌</h1>
+      </ion-header-bar>
+      &lt;!&ndash;<div class="search-form">
+        <div class="mgr-12  pdt-12 pdb-12 pdl-0 pdr-0">
+          <i class="dj-icon find"></i>
+          <input type="text" placeholder="请输入产地名称关键字" ng-model="psOptions.placesteelName">
+        </div>
+        <i class="dj-icon search" on-tap="doRefreshPlaceSteel()"></i>
+      </div>&ndash;&gt;
+      <ion-content class="has-footer">
+        <ion-refresher pulling-text="" on-refresh="doRefreshPlaceSteel()"></ion-refresher>
+
+        <div class="list">
+          <ion-checkbox class="border-left-0 border-right-0" ng-repeat="placeSteel in placeSteelList"
+                        ng-model="placeSteel.checked">
+            {{placeSteel.placesteelName}}
+          </ion-checkbox>
+        </div>
+        <ion-infinite-scroll distance="2%" on-infinite="doLoadPlaceSteel()"
+                             ng-if="psOptions.moreData && psOptions.show"></ion-infinite-scroll>
+
+      </ion-content>
+
+      <ion-footer-bar class="btn-footer btn-content" adjust-resize>
+        <a class="btn-item" on-tap="unChecked(2)">清空</a>
+        <a class="btn-item btn-submit" on-tap="savePref(2)">确定</a>
+      </ion-footer-bar>
+
+    </ion-modal-view>
+  </script>-->
+
+</ion-view>
+
+

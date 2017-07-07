@@ -1,0 +1,30 @@
+<ion-modal-view class="choose-steelplace bg-gray">
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closePlaceSteelModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">选择产地</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-footer">
+
+    <div class="list">
+      <div class="item pd-all-0" ng-repeat="item in steelPlaceStorageList">
+        <ion-radio name="steelPlaceRadio" ng-value="item.placesteelId" on-tap="checkedPlaceSteel(item)"
+                   ng-model="steelPlaceChecked">
+          {{item.placesteelName}}
+        </ion-radio>
+      </div>
+    </div>
+
+    <div class="flex-display flex-justify-content-center mg-all-12"><i class="icon ion-plus-circled pdr-8 font-size-20 text-orange2"></i>如未找到请点击，<a class="text-orange2" on-tap="openPlaceSteelMoreModal()">选择更多</a></div>
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer" adjust-resize>
+    <a class="btn-submit" on-tap="confirmPlaceSteel(false)">确定</a>
+  </ion-footer-bar>
+
+
+</ion-modal-view>

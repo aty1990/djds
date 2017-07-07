@@ -1,0 +1,19 @@
+@import "../common/varieables";
+
+.go-home {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 8px;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.platform-ios .go-home {
+  top: $ios-statusbar-height + 12px;
+}
+
+.slider-ads {
+  height: 100%;
+}

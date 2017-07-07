@@ -1,0 +1,44 @@
+{
+  "name": "dj-eshop-app",
+  "version": "1.1.1",
+  "description": "dj-eshop-app: An Ionic project",
+  "dependencies": {
+    "cordova-android": "^6.2.3",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^0.3.13",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.3.2"
+  },
+  "devDependencies": {
+    "@ionic/cli-plugin-ionic1": "1.1.2",
+    "babel-preset-es2015": "^6.18.0",
+    "bower": "^1.3.3",
+    "gulp-babel": "^6.1.2",
+    "gulp-if": "^2.0.1",
+    "gulp-replace": "^0.5.4",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.1",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-console@~1.0.3",
+    "cordova-plugin-splashscreen@~3.2.2",
+    "cordova-plugin-whitelist@~1.2.2",
+    "cordova-plugin-device@~1.1.2",
+    "cordova-plugin-statusbar@~2.1.3",
+    "cordova-plugin-app-version",
+    "cordova-plugin-camera",
+    "cordova-plugin-network-information",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer@~1.6.0",
+    "cordova-plugin-file-opener2@~2.0.2",
+    "ionic-plugin-keyboard@~2.2.1",
+    "cordova-plugin-app-version@~0.1.9",
+    "cordova-plugin-file@~4.3.0",
+    "cordova-plugin-network-information@~1.3.1",
+    "cordova-plugin-screen-orientation@~1.4.2",
+    "cordova-plugin-crosswalk-webview@~2.1.0"
+  ],
+  "cordovaPlatforms": []
+}

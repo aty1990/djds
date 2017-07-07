@@ -1,0 +1,202 @@
+@mixin sprite-width($sprite) {
+width: nth($sprite, 3);
+}
+
+@mixin sprite-height($sprite) {
+height: nth($sprite, 4);
+}
+
+@function sprite-width($sprite) {
+@return nth($sprite, 3);
+}
+
+@function sprite-height($sprite) {
+@return nth($sprite, 4);
+}
+
+@mixin sprite-position($sprite) {
+$sprite-offset-x: nth($sprite, 1);
+$sprite-offset-y: nth($sprite, 2);
+background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite($sprite, $display: block) {
+@include sprite-position($sprite);
+background-repeat: no-repeat;
+overflow: hidden;
+display: $display;
+@include sprite-width($sprite);
+@include sprite-height($sprite);
+}
+    $hom-down: -0px -0px 23px 15px;
+    .hom-down{
+      &:before {
+        @include sprite($hom-down,inline-block);
+      }
+    }
+    $recycle: -0px -15px 16px 19px;
+    .recycle{
+      &:before {
+        @include sprite($recycle,inline-block);
+      }
+    }
+    $date-time: -0px -33px 21px 21px;
+    .date-time{
+      &:before {
+        @include sprite($date-time,inline-block);
+      }
+    }
+    $find: -0px -54px 22px 22px;
+    .find{
+      &:before {
+        @include sprite($find,inline-block);
+      }
+    }
+    $dj-home-blue: -0px -76px 25px 24px;
+    .dj-home-blue{
+      &:before {
+        @include sprite($dj-home-blue,inline-block);
+      }
+    }
+    $dj-shop-blue: -0px -100px 24px 24px;
+    .dj-shop-blue{
+      &:before {
+        @include sprite($dj-shop-blue,inline-block);
+      }
+    }
+    $dj-concern-blue: -0px -123px 25px 24px;
+    .dj-concern-blue{
+      &:before {
+        @include sprite($dj-concern-blue,inline-block);
+      }
+    }
+    $dj-user-blue: -0px -147px 23px 24px;
+    .dj-user-blue{
+      &:before {
+        @include sprite($dj-user-blue,inline-block);
+      }
+    }
+    $dj-user: -0px -170px 23px 24px;
+    .dj-user{
+      &:before {
+        @include sprite($dj-user,inline-block);
+      }
+    }
+    $dj-concern: -0px -194px 25px 24px;
+    .dj-concern{
+      &:before {
+        @include sprite($dj-concern,inline-block);
+      }
+    }
+    $dj-shop: -0px -218px 24px 24px;
+    .dj-shop{
+      &:before {
+        @include sprite($dj-shop,inline-block);
+      }
+    }
+    $dj-home: -0px -242px 25px 24px;
+    .dj-home{
+      &:before {
+        @include sprite($dj-home,inline-block);
+      }
+    }
+    $home-msg: -0px -266px 28px 27px;
+    .home-msg{
+      &:before {
+        @include sprite($home-msg,inline-block);
+      }
+    }
+    $home-yzzy: -0px -293px 28px 28px;
+    .home-yzzy{
+      &:before {
+        @include sprite($home-yzzy,inline-block);
+      }
+    }
+    $message: -0px -321px 28px 28px;
+    .message{
+      &:before {
+        @include sprite($message,inline-block);
+      }
+    }
+    $tjpp: -0px -349px 28px 28px;
+    .tjpp{
+      &:before {
+        @include sprite($tjpp,inline-block);
+      }
+    }
+    $xesj: -0px -377px 28px 28px;
+    .xesj{
+      &:before {
+        @include sprite($xesj,inline-block);
+      }
+    }
+    $search: -0px -405px 28px 28px;
+    .search{
+      &:before {
+        @include sprite($search,inline-block);
+      }
+    }
+    $search2: -0px -433px 28px 28px;
+    .search2{
+      &:before {
+        @include sprite($search2,inline-block);
+      }
+    }
+    $spot-order-title1: -0px -461px 28px 28px;
+    .spot-order-title1{
+      &:before {
+        @include sprite($spot-order-title1,inline-block);
+      }
+    }
+    $spot-order-title2: -0px -489px 28px 28px;
+    .spot-order-title2{
+      &:before {
+        @include sprite($spot-order-title2,inline-block);
+      }
+    }
+    $spot-order-title3: -0px -517px 28px 28px;
+    .spot-order-title3{
+      &:before {
+        @include sprite($spot-order-title3,inline-block);
+      }
+    }
+    $spot-order-title4: -0px -545px 28px 28px;
+    .spot-order-title4{
+      &:before {
+        @include sprite($spot-order-title4,inline-block);
+      }
+    }
+    $order: -0px -573px 32px 32px;
+    .order{
+      &:before {
+        @include sprite($order,inline-block);
+      }
+    }
+    $contract: -0px -605px 32px 32px;
+    .contract{
+      &:before {
+        @include sprite($contract,inline-block);
+      }
+    }
+
+  .dj-icon{
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+    .dj-icon:before {
+    background-image: url('../img/sprite.png');
+    content:'';
+    margin:auto;
+    }
+
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .dj-icon:before {
+    background-image: url('../img/sprite@2x.png');
+    content:'';
+    margin:auto;
+      background-size: 32px 637px;
+    }
+      }
+

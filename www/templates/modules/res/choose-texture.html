@@ -1,0 +1,30 @@
+<ion-modal-view class="choose-steelplace bg-gray">
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closeTextureModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">选择材质</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-footer">
+
+    <div class="list">
+      <div class="item pd-all-0" ng-repeat="item in textureStorageList">
+        <ion-radio name="textureRadio" ng-value="item.textureId" on-tap="checkedTexture(item)"
+                   ng-model="textureChecked">
+          {{item.textureName}}
+        </ion-radio>
+      </div>
+    </div>
+
+    <div class="flex-display flex-justify-content-center mg-all-12"><i class="icon ion-plus-circled pdr-8 font-size-20 text-orange2"></i>如未找到请点击，<a class="text-orange2" on-tap="openTextureMoreModal()">选择更多</a></div>
+
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer" adjust-resize>
+    <a class="btn-submit" on-tap="confirmTexture(false)">确定</a>
+  </ion-footer-bar>
+
+
+</ion-modal-view>

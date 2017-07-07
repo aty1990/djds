@@ -1,0 +1,26 @@
+<ion-view view-title="现货">
+
+
+  <ion-content class="category" scroll="false">
+
+    <ion-scroll class="c-left">
+      <a ng-class="{'cur':type==1}" on-tap="clickVariety(1)">
+        <img ng-src="img/home/logo1.png" alt="">
+        <span>圆钢</span>
+      </a>
+      <a ng-class="{'cur':type==2}" on-tap="clickVariety(2)">
+        <img ng-src="img/home/logo2.png" alt="">
+        <span>工业线材</span>
+      </a>
+    </ion-scroll>
+
+    <ion-scroll class="c-right">
+      <div class="list">
+        <a class="item" ng-repeat="item in dataList" on-tap="clickBrand({{item}})"><span>{{item.brandName}}</span></a>
+
+      </div>
+    </ion-scroll>
+
+  </ion-content>
+
+</ion-view>

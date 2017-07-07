@@ -1,0 +1,58 @@
+<ion-view view-title="我的关注">
+  <ion-nav-buttons side="right">
+    <button ng-click="clearConcern()" class="button back-button buttons button-clear header-item font-size-14">
+      清空</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="list">
+      <a class="item item-icon-left item-icon-right font-size-14" ng-repeat="item in resList" on-hold="clearConcernSingle(item)" on-tap="toResListPage(item)">
+        <i class="icon ion-ios-star star-orange"></i>
+        <div on-tap="toResListPage(item)">
+          {{item.brandName}}/{{item.placesteelName}}/{{item.textureName}}/{{item.specName}}
+        </div>
+        <i class="icon ion-ios-arrow-right arrow-color" ></i>
+      </a>
+    </div>
+    <div ng-if="resList.length==0" class="full-screen-tip font-size-12">
+      暂无关注资源
+    </div>
+    <ion-infinite-scroll distance="2%" on-infinite="doLoad()" ng-if="moreData"></ion-infinite-scroll>
+  </ion-content>
+
+  <!-- 取消关注弹窗 -->
+  <script id="concern-cancel-modal.html" type="text/ng-template">
+    <ion-modal-view class="concern-cancel-modal">
+      <div class="list">
+        <div class="item row text-center">
+          取消关注【{{resSelected.brandName}}/{{resSelected.placesteelName}}/{{resSelected.textureName}}/{{resSelected.specName}}】？
+        </div>
+        <a class="item row positive" on-tap="confirm()">
+          确定
+        </a>
+        <a class="item row" on-tap="close()">
+          取消
+        </a>
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!--全部取消关注弹窗 -->
+  <script id="concern-cancel-all-modal.html" type="text/ng-template">
+    <ion-modal-view class="concern-cancel-modal">
+      <div class="list">
+        <div class="item row text-center">
+         确定要清空所有的关注信息吗？
+        </div>
+        <a class="item row positive" on-tap="confirmAll()">
+          确定
+        </a>
+        <a class="item row" on-tap="closeAll()">
+          取消
+        </a>
+      </div>
+    </ion-modal-view>
+  </script>
+
+</ion-view>

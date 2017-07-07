@@ -1,0 +1,170 @@
+<ion-view hide-nav-bar="true">
+
+  <ion-header-bar class="bar-positive shopping-cart-container">
+    <button class="button back-button buttons button-clear header-item" on-tap="goBack()"><i
+        class="icon ion-ios-arrow-left"></i></button>
+    <h1 class="title">现货</h1>
+    <a class="clear-btn" native-ui-sref="tab.shopping-cart()">购物车({{shopcartNum?shopcartNum:0}})</a>
+  </ion-header-bar>
+  <ion-content class="res-container has-footer has-header">
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list">
+      <div ng-repeat="item in resList">
+        <a class="item pd-all-0 mgt-12" on-hold="showConcernModal(item)">
+          <div class="icon-item pdl-8 pdr-8 pdb-4">
+            <i class="icon ion-android-bookmark assertive content-intro" ng-show="item.recommand==1"></i>
+            <i class="icon ion-ios-star star-orange" ng-show="item.concernStatus==1"></i>
+            <i class="icon ion-ios-cart balanced" ng-show="item.shopcartId"></i>
+            <i class="icon ion-record content-sleep" ng-show="item.pauseFlag==1"></i>
+            <i class="icon ion-record content-stop" ng-show="item.pauseFlag==1"></i>
+          </div>
+          <div class="body-item">
+            <div class="title">
+              <div class="title-span ">{{item.brandName}}/{{item.placesteelName}}/{{item.textureName}}/{{item.specName}}<span
+                  ng-show="item.surplusFlag==1">(余材)</span></div>
+              <span class="price-span ">¥{{item.listingPriceDesc}}</span>
+            </div>
+
+            <div class="content pdt-4">
+              <div class="row row-no-padding">
+                <div class="col col-75">
+                  <span>{{item.warehouseName}}</span>
+                  <span ng-if="item.cityName">（{{item.cityName}}）</span>
+                  <span class="bg-style"
+                        ng-show="item.deliveryDate&&item.deliveryDate!=0">{{item.deliveryDate}}天交货</span>
+                  <span class="bg-style" ng-show="item.liftingFlag==1">{{item.liftingFlagDesc}}</span>
+                  <span class="bg-style" ng-show="item.limitDistribution==1">{{item.limitDistributionDesc}}</span>
+                </div>
+                <div class="col col-25 weight-span">
+                  <span>{{item.listingWeight}}吨</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="cart-btn pdr-8 pdb-12" ng-if="loginFlag">
+          <a class="confirm-btn flex-display flex-justify-content-center" ng-show="item.shopcartId>0" on-tap="doToShopcart(item)"> <i
+              class="icon ion-ios-cart  mgr-4 font-size-20 "></i>
+            <div>取消</div></a>
+          <a class="confirm-btn flex-display flex-justify-content-center" ng-show="item.shopcartId==null||item.shopcartId<=0" on-tap="doToShopcart(item)"> <i
+              class="icon ion-ios-cart  mgr-4 font-size-20"></i><div>加入</div></a>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="resList.length==0" class="no-record" style="background-color: white">
+      <span>暂无查询结果，您可以尝试其他搜索条件</span>
+    </div>
+
+    <!--<ion-infinite-scroll distance="2%" on-infinite="doLoad()" ng-if="moreData"></ion-infinite-scroll>-->
+  </ion-content>
+
+  <ion-footer-bar class="res-footer">
+    <a on-tap="openCityModal()" class="col-25">
+      <span>{{cityNameFooter}} <i class="icon ion-ios-arrow-up"></i></span>
+    </a>
+    <a on-tap="openBrandModal()" class="col-25">
+      <span>{{brandNameFooter}} <i class="icon ion-ios-arrow-up"></i></span>
+    </a>
+    <a on-tap="openSortModal()" class="col-30">
+      <span>{{sortNameFooter}} <i class="icon ion-ios-arrow-up"></i></span>
+    </a>
+    <a on-tap="openFiltrateModal()" class="col-20">
+      <span>筛选 <i class="icon ion-funnel"></i></span>
+    </a>
+
+  </ion-footer-bar>
+
+  <!-- 品名筛选弹窗 -->
+  <script id="brand-search-modal.html" type="text/ng-template">
+    <ion-modal-view class="search-modal">
+      <div class="bar bar-title">
+        <h1 class="title">品名</h1>
+      </div>
+      <div class="search-content">
+        <div class="row row-no-padding">
+          <ion-scroll class="col-20 search-scroll">
+            <ul class="ul-left">
+              <li ng-repeat="variety in varietyList" ng-click="changeBrandList(variety.varietyId)"
+                  ng-class="varietySelected==variety.varietyId?'checked':''">{{variety.varietyName}}
+              </li>
+            </ul>
+          </ion-scroll>
+          <ion-scroll direction="y" class="col-80  search-scroll res-radio">
+            <ion-radio ng-repeat="brand in brandList"
+                       ng-value="brand.brandId" ng-model="queryParam.brandId" ng-change="chooseBrand(brand)">
+              {{brand.brandName}}
+            </ion-radio>
+          </ion-scroll>
+        </div>
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!-- 城市筛选弹窗 -->
+  <script id="city-search-modal.html" type="text/ng-template">
+    <ion-modal-view class="search-modal">
+      <div class="bar bar-title">
+        <span class="title">资源所在地</span>
+      </div>
+      <div class="search-content">
+        <ion-scroll direction="y" class="search-scroll res-radio">
+          <ion-radio class="border-left-0 border-right-0" name="cityName" ng-value="" ng-model="queryParam.city"
+                     ng-change="chooseCity()">全国
+          </ion-radio>
+          <ion-radio class="border-left-0 border-right-0" ng-repeat="city in cityList" ng-value="city.cityId" name="cityName"
+                     ng-model="queryParam.city" ng-change="chooseCity(city)">
+            {{city.cityName}}
+          </ion-radio>
+        </ion-scroll>
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!-- 我的关注弹窗 -->
+  <script id="my-concern-modal.html" type="text/ng-template">
+    <ion-modal-view class="concern-modal pd-all-0">
+      <div class="concern-title">
+        {{concernInfo.brandName}}/{{concernInfo.placesteelName}}/{{concernInfo.textureName}}/{{concernInfo.specName}}
+        【{{concernInfo.warehouseName}}】
+      </div>
+      <div class="list">
+        <a class="item row concern-item positive" href="tel:{{concernInfo.tel}}">
+          <i class="icon ion-ios-telephone energized mgr-8 font-size-24 col col-25 "></i>
+          <span class="col col-75 text-left">联系业务员/{{concernInfo.tel}}</span>
+        </a>
+        <a class="item row concern-item positive" on-tap="doConcern(concernInfo)" ng-show="loginFlag">
+          <i class="icon ion-ios-star star-orange mgr-8 font-size-24  col col-25 "></i>
+          <span class="col col-75 text-left" ng-show="concernInfo.concernStatus!=1">关注</span>
+          <span class="col col-75 text-left" ng-show="concernInfo.concernStatus==1">取消关注</span>
+        </a>
+        <!--<a class="item row concern-item positive" on-tap="doToShopcart(concernInfo)" ng-show="loginFlag">-->
+          <!--<i class="icon ion-ios-cart balanced mgr-8 font-size-24  col col-25 "></i>-->
+          <!--<span class="col col-75 text-left"-->
+                <!--ng-show="concernInfo.shopcartId==null||concernInfo.shopcartId<=0">加入购物车</span>-->
+          <!--<span class="col col-75 text-left" ng-show="concernInfo.shopcartId>0">取消购物车</span>-->
+        <!--</a>-->
+      </div>
+    </ion-modal-view>
+  </script>
+
+  <!-- 综合排序弹窗 -->
+  <script id="sort-modal.html" type="text/ng-template">
+    <ion-modal-view class="search-modal">
+      <div class="bar bar-title">
+        <h1 class="title">排序方式</h1>
+      </div>
+      <div class="search-content">
+        <ion-scroll direction="y" class="search-scroll res-radio">
+          <ion-radio class="border-left-0 border-right-0" ng-repeat="sort in sortList" ng-value="sort.sortId"
+                     ng-model="queryParam.sortCode" ng-change="chooseSort(sort)" name="sortByName">
+            {{sort.sortName}}
+          </ion-radio>
+        </ion-scroll>
+      </div>
+    </ion-modal-view>
+  </script>
+
+</ion-view>

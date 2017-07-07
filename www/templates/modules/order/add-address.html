@@ -1,0 +1,53 @@
+<ion-modal-view class="other-require bg-gray">
+
+  <ion-header-bar class="bar-positive">
+    <button class="button back-button buttons button-clear header-item" on-tap="closeAddressModal()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">新增收货地址</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-header" scroll="false"  adjust-resize>
+    <div class="list">
+      <div class="item row">
+        <label class="col-25">收货企业:</label>
+        <input type="text" placeholder="请输入收货企业" ng-model="addressData.takeDep"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">收货人:</label>
+        <input type="text" placeholder="请输入收货人" ng-model="addressData.takePerson"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">联系方式:</label>
+        <input type="text" placeholder="请输入收货人联系方式" ng-model="addressData.takePhone"/>
+      </div>
+      <div class="item row">
+        <label class="col-25">收货地址:</label>
+        <select ng-model="addressData.province" class="col-25" ng-change="getCityByProvinceCode()">
+          <option value="">请选择</option>
+          <option value="{{item.provinceCode}}" ng-repeat="item  in addressData.provinceList">
+            {{item.provinceName}}
+          </option>
+        </select>
+        <select ng-model="addressData.city" class="col-25" ng-change="getDistrictByCityCode()">
+          <option value="">请选择</option>
+          <option value="{{item.cityCode}}" ng-repeat="item  in addressData.cityList">{{item.cityName}}</option>
+        </select>
+        <select ng-model="addressData.district" class="col-25">
+          <option value="">请选择</option>
+          <option value="{{item.districtCode}}" ng-repeat="item  in addressData.districtList">{{item.districtName}}
+          </option>
+        </select>
+      </div>
+      <div class="item row note">
+        <label class="col-25">详细地址:</label>
+        <textarea ng-model="addressData.addressInfo"></textarea>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="btn-footer">
+    <a class="btn-submit" on-tap="saveAddress()">确定</a>
+  </ion-footer-bar>
+
+</ion-modal-view>

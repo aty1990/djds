@@ -1,0 +1,68 @@
+<ion-view title="认证企业详情">
+  <ion-content class="pdt-24 pdl-24 pdr-24">
+    <div class="list list-company">
+      <label class="item item-input border-top-0 border-left-0 border-right-0">
+        <span class="input-label">企业全称</span>
+        <span>{{mbr.cmpy.cmpyName || '-'}}</span>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">所在地区</span>
+        <span>{{mbr.cmpy.addressDesc || '-'}}</span>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">信用代码</span>
+        <span>{{mbr.cmpy.socialCreditCode || '-'}}</span>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0 ">
+        <span class="input-label">税号</span>
+        <span>{{mbr.cmpy.cmpyTariff || '-'}}</span>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">营业执照</span>
+        <button class="button button-positive button-clear" ng-disabled="!mbr.cmpy.busiLicence"
+                on-tap="showImage(mbr.cmpy.busiLicence)">查看大图</button>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0" ng-show="mbr.cmpy.org">
+        <span class="input-label">组织机构代码证</span>
+        <button class="button button-positive button-clear" ng-disabled="!mbr.cmpy.org"
+                on-tap="showImage(mbr.cmpy.org)">查看大图</button>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0" ng-show="mbr.cmpy.taxReg">
+        <span class="input-label">税务登记证</span>
+        <button class="button button-positive button-clear" ng-disabled="!mbr.cmpy.taxReg"
+                on-tap="showImage(mbr.cmpy.taxReg)">查看大图</button>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">开户许可证</span>
+        <button class="button button-positive button-clear" ng-disabled="!mbr.cmpy.permission"
+                on-tap="showImage(mbr.cmpy.permission)">查看大图</button>
+      </label>
+
+      <label class="item item-input border-left-0 border-right-0">
+        <span class="input-label">授权委托书</span>
+        <button class="button button-positive button-clear" ng-disabled="!mbr.proxy"
+                on-tap="showImage(mbr.proxy)">查看大图</button>
+      </label>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="pd-all-0">
+    <button class="button button-energized button-full mg-all-0" on-tap="saveDefaultCompany()">
+      设为账号默认企业
+    </button>
+  </ion-footer-bar>
+
+  <div class="float-image-container" ng-show="imgeUrl" on-tap="hideImage()">
+    <div class="float-inner">
+      <img class="float-image" ng-src="{{imgeUrl}}"/>
+    </div>
+  </div>
+
+</ion-view>

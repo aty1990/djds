@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+.text-orange2 {
+  color: $orange-color2;
+}
+
+.arrow-color {
+  color: #bbbbbb;
+}
+
+.shopping-cart-container {
+
+  .bg-gray{
+    background-color: #f5f5fa;
+  }
+
+  .del-button {
+    background-color: $orange-color2;
+    color: white;
+  }
+
+  &.has-footer {
+    bottom: 110px;
+  }
+  .title {
+    left: 54px !important;
+    right: 54px !important;
+  }
+
+  .clear-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    font-size: 14px;
+    line-height: 34px;
+    display: flex;
+  }
+
+  .list {
+    height: 100%;
+    .head {
+      color: $font-gray2;
+      font-size: 16px;
+      line-height: 55px;
+      height: 55px;
+      padding: 0px 12px;
+      @include checkbox-style(32px, 18px, -14px, auto, 34px);
+      label{
+        background-color: white;
+      }
+    }
+    .list {
+      //height: 70px;
+      height: auto;
+      .item-checkbox .checkbox {
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        padding: 0px 12px;
+        left: 0px;
+        z-index: 3;
+        margin-top: -8px;
+      }
+      .item.item-checkbox {
+        border: none;
+        background-color: #f5f5fa;
+        height: 100%;
+        padding-left: 40px;
+        padding-top: 12px;
+        padding-right: 4px;
+        padding-bottom: 12px;
+        .checkbox-icon {
+          width: 18px;
+          height: 18px;
+          &:after {
+            top: 36%;
+            left: 25%;
+            width: 8px;
+            height: 4px;
+          }
+        }
+      }
+      .item-thumbnail-left, .thumbnail-left, .item-thumbnail-left .item-content {
+        padding: 0px;
+        min-height: 70px;
+      }
+    }
+    .content {
+      color: $font-gray;
+      font-size: 12px;
+      height: auto;
+      //height: 70px;
+      width: 100%;
+      background-color: #f5f5fa;
+      .content-top,.content-bottom{
+        .left {
+          width: 72%;
+          color: $font-gray2;
+          font-size: 14px;
+          line-height: 26px;
+          float: left;
+          white-space: normal;
+          .bg-style {
+            background-color: rgb(115, 143, 254);
+            border-radius: 4px;
+            color: white;
+            padding: 2px 4px 2px 4px;
+          }
+
+        }
+        .right {
+          width: 28%;
+          float: right;
+          text-align: right;
+          font-size: 12px;
+          color: $font-gray;
+          line-height: 26px;
+          .price-span {
+            font-size: 14px;
+            color: $orange-color2;
+          }
+          .weight-span {
+            input {
+              width: 60px;
+              height: 26px;
+              border: 1px solid #dcdcde;
+              display: inline-block;
+              border-radius: 4px;
+              padding: 0px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.radio-box {
+
+  .item-radio {
+    border: none;
+    font-size: 14px;
+    height: 55px;
+    &:first-child {
+      border-top: 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    .radio-content {
+      height: 55px;
+      .item-content {
+        padding: 0px;
+        > span {
+          width: 100%;
+          display: inline-block;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .radio-icon {
+      font-size: 22px;
+      top: 6px;
+      right: inherit;
+      visibility: visible;
+      padding: 14px 0px 14px 0px;
+      &.ion-checkmark {
+        @extend .ion-ios-circle-outline;
+        color: #dcdcdc;
+        &:before {
+          display: block;
+          margin-top: -4px;
+        }
+      }
+    }
+    input:checked + .radio-content {
+      .item-content {
+        /* style the item content when its checked */
+        background: white;
+      }
+      .radio-icon {
+        &.ion-checkmark {
+          @extend .ion-ios-checkmark;
+          color: $orange-color2;
+          &:before {
+            display: block;
+            margin-top: -4px;
+          }
+        }
+      }
+    }
+  }
+
+  .item-content {
+    span {
+      padding-left: 24px;
+      font-size: 14px;
+    }
+  }
+}
+
+.shopping-cart-footer {
+  display: flex;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  height: 58px;
+  line-height: 58px;
+  padding: 0;
+  margin: 0;
+  bottom: 49px;
+  box-shadow: 0 -1px 10px $border-color;
+
+  .btn-submit {
+    background-color: $orange-color2;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: white;
+    padding: 0 8px;
+    min-width: 90px;
+    text-align: center;
+    &.activated {
+      background-color: darken($orange-color2, 5%);
+    }
+  }
+
+  .total {
+    line-height: 20px;
+    position: relative;
+    padding: 18px 0;
+  }
+}
+

@@ -1,0 +1,100 @@
+<ion-modal-view class="filtrate-modal">
+  <!--<ion-header-bar class="bar-positive">
+    &lt;!&ndash;<button class="button no-border" on-tap="closeFiltrateModal()"><i class="icon ion-ios-arrow-left"></i></button>&ndash;&gt;
+    <h1 class="title">筛选</h1>
+    &lt;!&ndash;<button class="button btn-finish" on-tap="editModelFinish()">完成</button>&ndash;&gt;
+  </ion-header-bar>-->
+  <ion-content class="">
+
+    <div class="filtrate-box">
+      <div class="f-title">品牌</div>
+      <div class="f-content" ng-class="{'shrink':searchPanelData.placesteelShrink}">
+        <a class="f-item" ng-class="{'cur':searchPanelData.placesteelAllFlag}" on-tap="filtratePlacesteelClick(true)">全部</a>
+        <a class="f-item" ng-repeat="item in searchPanelData.placesteelList" ng-class="{'cur':item.checked}" on-tap="filtratePlacesteelClick(false, item)">{{item.placesteelName}}</a>
+      </div>
+
+      <a ng-show="searchPanelData.placesteelList.length >= 12" on-tap="searchPanelData.placesteelShrink = !searchPanelData.placesteelShrink">
+        <i class="ion-arrow-down-b" ng-class="{'ion-arrow-down-b':searchPanelData.placesteelShrink,'ion-arrow-up-b':!searchPanelData.placesteelShrink}"></i>
+      </a>
+
+    </div>
+
+    <div class="filtrate-box">
+      <div class="f-title">材质</div>
+      <div class="f-content" ng-class="{'shrink':searchPanelData.textureShrink}">
+        <a class="f-item" ng-class="{'cur':searchPanelData.textureAllFlag}" on-tap="filtrateTextureClick(true)">全部</a>
+        <a class="f-item" ng-repeat="item in searchPanelData.allTextureList" ng-class="{'cur':item.checked}" on-tap="filtrateTextureClick(false, item)">{{item.textureName}}</a>
+      </div>
+
+      <a ng-show="searchPanelData.placesteelList.length >= 12" on-tap="searchPanelData.textureShrink = !searchPanelData.textureShrink">
+        <i class="ion-arrow-down-b" ng-class="{'ion-arrow-down-b':searchPanelData.textureShrink,'ion-arrow-up-b':!searchPanelData.textureShrink}"></i>
+      </a>
+    </div>
+
+    <div class="filtrate-box">
+      <div class="f-title">规格</div>
+      <div class="f-content">
+        <div class="f-input-group" ng-show="searchPanelData.diaFlag == 1">
+          <label>直径：</label>
+          <input type="text" ng-model="searchPanel.diaMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.diaMax" placeholder="请输入">
+        </div>
+        <div class="f-input-group" ng-show="searchPanelData.odFlag == 1">
+          <label>外径：</label>
+          <input type="text" ng-model="searchPanel.odMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.odMax" placeholder="请输入">
+        </div>
+        <div class="f-input-group" ng-show="searchPanelData.wallthickFlag == 1">
+          <label>壁厚：</label>
+          <input type="text" ng-model="searchPanel.wallthickMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.wallthickMax" placeholder="请输入">
+        </div>
+        <div class="f-input-group" ng-show="searchPanelData.thicknessFlag == 1">
+          <label>厚度：</label>
+          <input type="text" ng-model="searchPanel.thicknessMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.thicknessMax" placeholder="请输入">
+        </div>
+        <div class="f-input-group" ng-show="searchPanelData.widthFlag == 1">
+          <label>宽度：</label>
+          <input type="text" ng-model="searchPanel.widthMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.widthMax" placeholder="请输入">
+        </div>
+        <div class="f-input-group" ng-show="searchPanelData.lengthFlag == 1">
+          <label>长度：</label>
+          <input type="text" ng-model="searchPanel.lengthMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.lengthMax" placeholder="请输入">
+        </div>
+        <div class="f-input-group" ng-show="searchPanelData.heightFlag == 1">
+          <label>高度：</label>
+          <input type="text" ng-model="searchPanel.heightMin" placeholder="请输入">
+          <span>—</span>
+          <input type="text" ng-model="searchPanel.heightMax" placeholder="请输入">
+        </div>
+      </div>
+    </div>
+
+    <div class="filtrate-box">
+      <div class="f-title">其他</div>
+      <div class="f-content">
+        <a class="f-item" ng-class="{'cur':searchPanel.limitFlag==1}" on-tap="searchPanel.limitFlag=searchPanel.limitFlag==1?'':1">限配送</a>
+        <a class="f-item" ng-class="{'cur':searchPanel.spotFlag==1}" on-tap="searchPanel.spotFlag=searchPanel.spotFlag==1?'':1">现货</a>
+        <a class="f-item" ng-class="{'cur':searchPanel.liftingFlag==1}" on-tap="searchPanel.liftingFlag=searchPanel.liftingFlag==1?'':1">含吊费</a>
+        <a class="f-item" ng-class="{'cur':searchPanel.surplusFlag==1}" on-tap="searchPanel.surplusFlag=searchPanel.surplusFlag==1?'':1">余材</a>
+        <a class="f-item" ng-class="{'cur':searchPanel.concernFlag==1}" on-tap="searchPanel.concernFlag=searchPanel.concernFlag==1?'':1">关注资源</a>
+        <a class="f-item" ng-class="{'cur':searchPanel.purchaseFlag==1}" on-tap="searchPanel.purchaseFlag=searchPanel.purchaseFlag==1?'':1">可采购资源123</a>
+      </div>
+    </div>
+  </ion-content>
+
+  <div class="filtrate-btn-box">
+    <a class="btn-clear" on-tap="cleanFiltrateModal()">清空</a>
+    <a class="btn-submit" on-tap="submitFiltrateModal()">完成</a>
+  </div>
+
+</ion-modal-view>
